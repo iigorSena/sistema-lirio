@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'HomePage/css/style_login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Login | CEJA</title>
+</head>
+
+<body>
+    <div id='main'>
+        <form id="form_login" method="POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+
+            <div id="area_username" class="area_login">
+                {{ login_form.username.label_tag }}
+                {{ login_form.username }}
+            </div>
+
+            <div id="area_password" class="area_login">
+                {{ login_form.password.label_tag }}
+                {{ login_form.password }}
+            </div>
+
+            <button id="btn_login" type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

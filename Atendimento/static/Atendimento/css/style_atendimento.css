@@ -1,0 +1,219 @@
+body{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #051753;
+    font-family: 'Montserrat';
+}
+
+#barra_de_nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: white;
+    color: #051753;
+    font-size: 15pt;
+    font-weight: bold;    
+}
+
+#main, #area-form, #form-dados-assis{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+fieldset{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.label-form{
+    color: white;
+    font-weight: bold;
+}
+.input-form{
+    color: white;
+    font-size: 14pt;
+    border-radius: 5px;
+    border: none;
+}
+#area-nome{
+    width: 100%;
+}
+#area-cpf, #area-data_nasci{
+    width: 45%;
+    margin-right: 10px;
+}
+#area-numero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#numero{
+    width: 25%;
+    text-align: center;
+    font-weight: bold;
+}
+#cpf, #data_nasci{
+    text-align: center;
+}
+
+#area-validacao-dados{
+    width: 64%;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#area-dados{
+    width: 65%;
+}
+#tb-area-dados{
+    color: white;
+    font-weight: bold;
+}
+#tb-linha-tip_assis{
+    border-bottom: 1px solid white;
+}
+
+#area-mensagens{
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+#msg-confirmacao{
+    color: #00ff00;
+    font-weight: bold;
+    display: none;
+}
+#msg-negacao{
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+#msg-alerta-input-vazio{
+    color: yellow;
+    font-weight: bold;
+    display: none;
+}
+#msg-gravacao-bem-sucedida{
+    color: #00ff00;
+    font-weight: bold;
+    display: none;
+}
+#msg-gravacao-falhou{
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+hr{
+    width: 100%;
+}
+
+#area-validacao-Atendimento{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#area-checagem{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#input-checagem{
+    width: 8vw;
+    height: 8vh;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18pt;
+    font-weight: bold;
+    box-shadow: 0px 4px 15px black;
+}
+#btn-pesquisar-numero{
+    font-size: 12pt;
+    font-weight: bold;
+    color: white;
+    background-color: #00ff00;
+    height: 6vh;
+    width: 7vw;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+#btn-validar-atendimento:disabled{
+   box-shadow: none;
+   color: #737479;
+}
+#btn-validar-atendimento{
+    width: 30%;
+    padding-block: 5px;
+    font-size: 13pt;
+    font-weight: bold;
+    color: #051753;
+    background-color: white;
+    box-shadow: 0px 4px 15px black;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+
+@media (max-width: 750px) {
+    #main, #area-form, #form-dados-assis{
+        width: 99%;
+    }
+
+    #area-validacao-dados{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #area-dados{
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    #area-checagem{
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #input-checagem{
+        width: 25vw;
+        font-size: 25pt;
+
+    }
+    #btn-pesquisar-numero{
+        width: 25vw;
+        display: flex;
+        justify-content: center;
+    }
+    #btn-validar-atendimento{
+        width: 55vw;
+        height: 4vh;
+        margin-top: 5px;
+    }
+}

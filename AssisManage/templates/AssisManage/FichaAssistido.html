@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <!-- {% load custom_filters %} -->
+    <!-- {% load static %} -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="{% static 'js/ControlesFichaAssistido.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_fichaassistidos.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Ficha Assistido</title>
+</head>
+
+<body>
+    <header id='barra_de_nav'>
+        <h2>Ficha Assistencial</h2>
+    </header>
+
+        <div id="main">
+
+            <form id="ficha-assistido-form" method="post">
+                {% csrf_token %}
+
+                <div id="fieldset-grupo-form">
+                    <div id="form-bloco1">
+                        <div class="form-group" id="area-input-nome">
+                            <label for="nome" class="label-form">Nome Completo:</label>
+                            <input type="text" id="nome" class="input-form" name="input-nome" value="{{ Fassistido.name |default:'Não Informado' }}" disabled>
+                        </div>
+                        
+                        <div class="form-group" id="area-input-id">
+                            <label for="ID" class="label-form">ID:</label>
+                            <input type="text" id="input-id" name="id" value="{{ Fassistido.id }}" disabled>
+                        </div>
+                    </div>
+
+                    <div id="form-bloco2">
+
+                        <div class="form-group" id="area-input-tel">
+                            <label for="telefone" class="label-form">Tel. Celular:</label>
+                            <input type="text" id="input-tel" class="input-form" name="telefone" value="{{ Fassistido.telefone | format_phone |default:'Não informado' }}" disabled>
+                        </div>
+
+                        <div class="form-group" id="area-input-cpf">
+                            <label for="cpf" class="label-form">CPF:</label>
+                            <input type="text" id="input-cpf" class="input-form" name="cpf" value="{{ Fassistido.cpf | format_cpf |default:'Não informado' }}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-datanasci">
+                            <label for="data_nascimento" class="label-form">Data de Nasc.:</label>
+                            <input type="text" id="input-data_nascimento" class="input-form"  name="data_nascimento" value="{{ Fassistido.data_nasci | date:"d/m/Y" |default:'Não informado' }}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-nomemae">
+                            <label for="nome_mae" class="label-form">Nome da Mãe:</label>
+                            <input type="text" id="nome_mae" class="input-form" name="nome_mae" value="{{ Fassistido.nome_mae |default:'Não informado'}}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-cep">
+                            <label for="cep" class="label-form">CEP:</label>
+                            <input type="text" id="cep" class="input-form" name="cep" value="{{ Fassistido.cep | format_cep |default:'Não informado'}}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-cidade">
+                            <label for="cidade"  class="label-form">Cidade:</label>
+                            <input type="text" id="cidade" class="input-form" name="cidade" value="{{ Fassistido.cidade |default:'Não informado'}}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-bairro">
+                            <label for="bairro" class="label-form">Bairro:</label>
+                            <input type="text" id="bairro" class="input-form" name="bairro" value="{{ Fassistido.bairro |default:'Não informado'}}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-logradouro">
+                            <label for="logradouro" class="label-form">Logradouro:</label>
+                            <input type="text" id="logradouro" class="input-form" name="logradouro" value="{{ Fassistido.logradouro |default:'Não informado'}}" disabled>
+                        </div>
+                        <div class="form-group" id="area-input-numero">
+                            <label for="numero" class="label-form">N°:</label>
+                            <input type="number" id="input-numero" class="input-form" name="numero" value="{{ Fassistido.numero |default:'Não informado'}}" disabled>
+                        </div>
+                        <div id="area-tip_assistencia" class="form-group">
+                            <label for="tip_assistencia" class="label-form">Tipo de Assistência:</label>
+                                {% for tipo in all_tipos_assis %}
+                                <div class="checkbox-item">
+                                    data-selected="{% if tipo.id in tip_assistencia_values %}true{% else %}false{% endif %}">
+                                        <input type="checkbox" id="checkbox_tip_assis{{ tipo.id }}" class="input-form" name="tip_assistencia" value="{{ tipo.id }}" 
+                                            {% if tipo.id in tip_assistencia_values %}checked{% endif %} disabled>
+                                        <label for="tip_assistencia_{{ tipo.id }}" class="input-tip_assis">{{ tipo.tip_assis }}</label>
+                                </div>
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="area-btns-form">
+                    <button type="button" id="btn-editar-form" class="btns-form">
+                        <img src="{% static 'AssisManage/images/lapis-amarelo.png' %}">
+                          Editar
+                    </button>
+
+                    <button type="button" id="btn-salvar-form" class="btns-form">
+                        <img src="{% static 'AssisManage/images/confirmar.png' %}">
+                         Salvar
+                    </button>
+
+                    <button type="button" id="btn-cancelar-form" class="btns-form">
+                        <img src="{% static 'AssisManage/images/cancelar.png' %}">
+                         Cancelar
+                    </button>
+
+                    <button type="button" id="btn-voltar-form" class="btns-form"
+                        onclick="window.location.href='{% url 'CadAssis' %}'">
+                        <img src="{% static 'AssisManage/images/voltar.png' %}">
+                          Voltar
+                    </button>
+                </div>
+            </form>
+
+            <div id="are-hist_assis">
+                <h2 id="title-Historico">Histórico</h2>
+                <hr>
+            
+                <div id="tb-hist_assis">
+                    {% if Hassistido %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tipo de Assistência</th>
+                                    <th>Local</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for hassistido in Hassistido %}
+                                    <tr>
+                                        <td>{{ hassistido.tip_assistencia }}</td>
+                                        <td>{{ hassistido.local }}</td>
+                                        <td>{{ hassistido.data }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p id="msg-registro-n-encontrado">Nenhum registro encontrado para este assistido!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+            
+</body>
+</html>
