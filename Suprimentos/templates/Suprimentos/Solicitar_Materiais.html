@@ -1,0 +1,79 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_solic_materiais.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Solicitar Materiais</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-solic_materiais'>
+    <form method="get" id="form-busc_materiais">
+        {% csrf_token %}
+        <div id="area-pedido_materiais">
+            <div id="area-user_requisitante">
+                <label>Requisitante</label>
+                <select name="requisitante" id="select-requisitante" class="form-select select2 select-padrao">
+                    <option value="">-- selecione --</option>
+                    {% for user in MatForm.requisitante.field.queryset %}
+                        <option value="{{ user.id }}">{{ user.get_full_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="area-busca_materiais">
+                <label>Buscar material</label>
+                {{ MatForm.item }}
+            </div>
+            <div id="area-input_quant_material">
+                <label>Quant.</label>
+                <input id="input-quant_number" type="number" min="1">
+            </div>
+            <button type="button" id="btn-add_material_solic" class="btn-padrao">
+                <img src="{% static 'images/mais.png' %}" alt="Adicionar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Adicionar
+            </button>
+        </div>
+    </form>
+    <form method="post" id="form-solic_materiais">
+        {% csrf_token %}
+        <!-- Área de Revisão do pedido -->
+        <div id="area-revisar_solic_materiais">
+            <h2 class="subtitle">Revisar Pedido</h2>
+            <hr class="linha-subtitle">
+
+            <table id="tabela-revisar_solic_materiais">
+                <thead>
+                    <tr>
+                        <th id="cab-material_tb_solic_materiais">Material</th>
+                        <th id="cab-undMedida_tb_solic_materiais">Und. Medida</th>
+                        <th id="cab-quant_tb_solic_materiais">Quant.</th>
+                        <th id="cab-acao_tb_solic_materiais">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="body-revisar_solic_materiais">
+                    <!-- itens vão ser inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+        <div id="area-btns_tb_solic_materiais">
+            <button type="button" class="btn-voltar" id="btn-voltar_minhas_req" data-url="{% url 'requisicao_materiais' %}">
+                <img src="{% static 'images/voltar.png' %}">
+                Voltar
+            </button>
+            <button type="submit" id="btn-criar_solic_material" class="btn-padrao" disabled>
+                <img src="{% static 'images/enviar.png' %}" alt="Adicionar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Enviar Pedido</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/ControlesSolcMateriais.js' %}"></script>
+    <script> const urlSolicMateriais = "{% url 'solicitar_materiais' %}";</script>
+{% endblock %}

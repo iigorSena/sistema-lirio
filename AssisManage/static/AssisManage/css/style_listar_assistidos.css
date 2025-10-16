@@ -1,0 +1,152 @@
+#main{
+    width: 95%;
+    height: auto;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#area-busca-tb-assis{
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#form-input-pesquisa-tb-assis{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#input-busca_listar_visitante{
+    border-right: 2px solid gray
+}
+#select-criterio_listar_visitantes{
+    padding-inline: 5px;
+}
+#btn-pesquisar-tb-assis{
+    color: white;
+    font-weight: bold;
+    background-color: #36b6ff;
+    padding-block: 6px;
+    margin-left: 5px;
+}
+#area-info_tb_assis{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+}
+#txt-Quant_resultados{
+    padding-bottom: -10px;
+    width: auto;
+    text-align: left;
+    margin-right: 10px;
+}
+.area-filtro_lista_visitantes{
+    display: flex;
+    flex-direction: row;
+
+}
+#area-tb-assis{
+    width: 100%;
+}
+
+#cln-id-tb-assis{
+    width: 4vw;
+    text-align: center;
+    border-right: solid 1px white;
+
+}
+#cln-nome-tb-assis{
+    padding-left: 5px;
+}
+#cln-data-nasc-tb-assis{
+    width: 13%;
+    text-align: center;
+}
+#cln-cpf-tb-assis{
+    width: 14%;
+    text-align: center;
+}
+#cln-acao-tb-assis{
+    text-align: center;
+    width: 12%;
+    border-left: solid 1px white;
+
+}
+
+#btn-edit-assis{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 251, 0);
+}
+#btn-edit-assis:hover{
+    background-color: hsl(55, 100%, 52%);
+}
+
+#area-paginacao{
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+.span-paginacao{
+    padding-bottom: 25px;
+}
+
+@media (max-width: 950px) {
+    #main{
+        width: 99%;
+    }
+
+    #btn-pesquisar-tb-assis{
+        padding-block: 6px;
+    }
+    #btn-cad-tb-assis{
+        margin-bottom: 15px;
+        padding-block: 6px;
+    }
+
+    #area-tb-assis {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+    }
+
+    table{
+        width: auto;
+        min-width: 600px
+    }
+
+    #btn-edit-assis{
+        margin-top: 5px;
+    }
+
+    #cln-id-tb-assis{
+        width: 7%;
+        border-right: solid 1px white;
+    }
+
+    #cln-cpf-tb-assis{
+        width: 22%;
+     }
+     #cln-data-nasc-tb-assis{
+        width: 15%;
+    }
+
+    #cln-acao-tb-assis{
+        text-align: center;
+        width: 16%;
+        border-left: solid 1px white;
+    }
+    
+    #area-paginacao{
+        width: 96%;
+    }
+    .span-paginacao{
+        padding-bottom: 5px;
+    }
+}

@@ -1,0 +1,134 @@
+@media (max-width: 900px) {
+
+    #area-opcoes_tb_Hist_Atend_Atf{
+        width: 98%;
+        display: flex;
+        justify-content: right;
+    }
+
+    #btn-pop_cad_hist_atend_atf{
+        background-color: #36b6ff;
+    }
+    #area-tb-Hist_Atend_Atf{
+        width: 100%;
+    }
+    #form-Hist_Atend_Atf{
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    #tb-Hist_Atend_Atf {
+        width: max-content; /* Faz a tabela ocupar a largura máxima do seu conteúdo */
+    }
+    thead{
+        position: sticky;
+        top: 0px;
+        box-shadow: 0px 5px 15px black;
+    }
+    .input-tb_Hist_Atend_Atf{
+        font-size: 12pt;
+        font-weight: bold;
+        border: none;
+        outline: none;
+        color: white;
+        background-color: transparent;
+    }
+     #cln-id_tb_Hist_Atend_Atf{
+        min-width: 80px; /* Ou um valor fixo em pixels para garantir um mínimo */
+        text-align: center;
+        border-right: solid 1px white;
+    }
+    #cln-facilitador_tb_Hist_Atend_Atf{
+        min-width: 150px; /* Exemplo: Um mínimo em pixels */
+    }
+    #cln-1vez_tb_Hist_Atend_Atf, #cln-retorno_tb_Hist_Atend_Atf{
+        min-width: 60px; /* Exemplo: Um mínimo em pixels */
+    }
+    #input-1_vez_histatf, #input-retono_histatf, #cln-data_tb_Hist_Atend_Atf{
+        text-align: center;
+    }
+    #cln-data_tb_Hist_Atend_Atf{
+        text-align: center;
+        min-width: 100px; /* Exemplo: Um mínimo em pixels */
+    }
+    #cln-acao_tb_Hist_Atend_Atf{
+        min-width: 80px; /* Exemplo: Um mínimo em pixels */
+        padding-block:5.5px;
+        display: flex;
+        gap:0px;
+        justify-content: center;
+        border-left: 1px solid white;
+    }    
+
+    /* POP-UP ======================== */
+    #sombra-popup_cad_atend_atf{
+        display: none;
+        position:fixed;
+        z-index: 1000;
+        background-color: rgb(0,0,0, 0.5);
+        width: 100%;
+        height: 100vh;
+    
+    }
+    #form-Cad_Atend_Atf{
+        position: fixed;
+        top: 100px;
+        left: 8px;
+        min-width: 85vw;
+        padding-inline: 20px;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #area-btn_close_cd_atend_atf{
+        width: 95%;
+        position:fixed;
+        z-index: 1000;
+        top: 100px;
+        right:15px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        margin: 0px;
+    }
+    #area-campos_Cad_Atend_Atf{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap:10px;
+        justify-content: center;
+        border-radius: 5px;
+        padding-block: 15px;
+        margin-top: -15px;
+    
+    }
+
+    .area-campo_input_Cad_Atend_Atf{
+        display: flex;
+        flex-direction: column;
+    }
+    .label-campo_input_Cad_Atend_At{
+        margin-bottom: 5px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+    .input_Cad_Atend_Atf{
+        text-align: center;
+        border-radius: 5px;
+    }
+    #area-campo_facilitador_cad_atend_atf{
+        width: 80vw;
+    }
+    #area-campo_1_vez_cad_atend_atf, #area-campo_retorno_cad_atend_atf{
+        width: 15vw;
+        text-align: center;
+    }
+    #area-campo_data_cad_atend_atf{
+        width: 40vw;
+        margin-bottom: -14px;
+    }
+
+
+}

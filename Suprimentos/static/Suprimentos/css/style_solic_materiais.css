@@ -1,0 +1,118 @@
+#main-solic_materiais{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+    
+#form-solic_materiais, #form-busc_materiais{
+    width: 100%;
+}
+#area-pedido_materiais{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:end;
+    border: 2px solid white;
+    border-radius: 5px;
+    gap: 10px;
+    padding: 10px;
+}
+#area-user_requisitante{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+#area-busca_materiais{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    position: relative;
+}
+#area-input_quant_material{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+#input-quant_number{
+    text-align: center;
+}
+.dropdown-solic_materiais {
+    border: none;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    background: white;
+    width: 100%;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+}
+
+.dropdown-solic_materiais li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-solic_materiais li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Área de Revisão do Pedido */
+#area-revisar_solic_materiais{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#tabela-revisar_solic_materiais{
+    width: 100%;
+}
+#cab-material_tb_solic_materiais{
+    width: 58%;
+}
+#cab-quant_tb_solic_materiais{
+    width: 17%;
+}
+#cab-acao_tb_solic_materiais{
+    width: 15%;
+}
+#cln-material_body_solic_materiais{
+    padding-left: 5px;
+}
+#cln-quant_body_solic_materiais,#cln-undMedida_body_solic_materiais, #cln-acao_body_solic_materiais{
+    text-align: center;
+}
+#btn-remover_material_solic_materiais{
+    background-color: red;
+    color: white;
+}
+#area-btns_tb_solic_materiais{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 950px){
+#main-solic_materiais{
+    width: 95%;
+}
+#area-pedido_materiais{
+    justify-content: center;
+}
+#btn-add_material_solic{
+    width: 50%;
+}
+#linha-subtitle{
+    width: 100%;
+}
+}

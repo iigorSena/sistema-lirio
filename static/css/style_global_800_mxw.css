@@ -1,0 +1,39 @@
+@media (max-width: 950px) {
+    button{
+        padding-block: 8px;
+        padding-inline: 10px;
+    }
+    #title-pag{
+        font-size: 30pt;
+        text-align: center;
+    }
+    #linha-title_atendimento{
+        width: 60vw;
+    }
+
+    table{
+        font-size: 11pt;
+        font-weight: bold;
+    }
+    .title-pag{
+        color: white;
+        font-weight: bold;
+        font-size: 15pt;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+    .linha-title{
+        border: none;
+        height: 4px;
+        width: 25vw;
+        background: linear-gradient(to right, transparent, #00e1ff, transparent);
+        margin-bottom: 30px;
+    }
+
+    #paginacao{
+        width: 100%;
+        margin-left: 15px;
+    }
+
+
+}

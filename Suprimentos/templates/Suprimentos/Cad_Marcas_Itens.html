@@ -1,0 +1,54 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_cad_marcas_itens.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Cadastro de Marcas</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-cad_marcas_supri'>
+    <form id="area-cad_marcas_supri" class="form-padrao">
+        {% csrf_token %}
+        <input type="text" class="input-padrao" name="nome" id="input-cad_marca_itens" placeholder="Add uma nova marca">
+        <button type="submit" class="btn-padrao_redondo">
+            <img src="{% static 'images/mais.png' %}">
+        </button>
+    </form>
+
+    <div id="area-visu_marcas_itens">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Marca</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for marca in marcas %}
+                <tr>
+                    <td class="cln-text_padrao">{{ marca.id }}</td>
+                    <td class="cln-nome_padrao">{{ marca.nome }}</td>
+                    <td class="cln-text_padrao">{{ marca.status }}</td>
+                    <td class="cln-elementos_padrao">
+                        <img src="{% static 'images/lapis-amarelo.png' %}" class="btn-img_acao_lista_marca">
+                        <img src="{% static 'images/confirmar.png' %}" class="btn-img_acao_lista_marca" style="display: none">
+                        <img src="{% static 'images/cancelar.png' %}" class="btn-img_acao_lista_marca"style="display: none">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</main>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ControlesCadMarcaItem.js' %}"></script>
+    <script> const urlCadMarcaItem = "{% url 'cad_marcas_itens' %}";</script>
+{% endblock %}

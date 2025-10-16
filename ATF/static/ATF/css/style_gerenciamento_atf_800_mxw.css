@@ -1,0 +1,54 @@
+@media (max-width: 900px) {
+    #form-geren_facilitadores{
+        width: 95%;
+    }
+
+    #area-tb_geren_facili{
+        width: 100%;
+        overflow-y: auto;
+    }
+    #tb-geren_facili{
+        width: 500px;
+    }
+
+    thead{
+        position: sticky;
+        top: 0px;
+        box-shadow: 0px 5px 15px black;
+    }
+
+    td{
+        padding-block: 4px;
+    }
+
+    #cab-status_geren_facili{
+        width: 25%;
+    }
+
+    #cab-acao_geren_facili{
+        width: 20%;
+    }
+    #cln-acao_tb_geren_facili{
+        padding-block: 10px;
+    }
+
+    /*PopUp Cadastro */
+    #sombra-popup_cad_facilitador_atf{
+        width: 100%;
+        height: 100%;
+    }
+    #form-Cad_facilitador_Atf{
+        width: 80%;
+        top: 150px;
+        left: 5vw;
+
+    }
+    #area-title{
+        margin-top: 15px;
+    }
+    #area-btn_close_cd_facilitador_atf{
+        font-size: 18pt;
+
+    }
+
+}

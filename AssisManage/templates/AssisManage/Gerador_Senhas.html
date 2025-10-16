@@ -1,0 +1,155 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_gerador_senhas.css' %}">
+{% endblock %}
+
+
+{% block title %}
+<title>Gerador de Senhas | CEJA</title>
+{% endblock %}
+
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Gerador de Senhas</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+{% if perms.Sistema.gerar_senhas_lote %}
+<form id="form-gerar_senhas" method="post">
+    {% csrf_token %}
+
+    <div id="area-filtro_gs">
+        <div id="gs-area_campos_criterio" class="gs-area_campos">
+            <label>Critério de Ordem</label>
+            <select name="criterio" id="select-criterio" class="select-form_cad_lote_senhas select-padrao">
+                <option value="ordem_alfabetica">Ordem Alfabética</option>
+            </select>
+        </div>
+
+        <div id="gs-area-campos_select" class="gs-area_campos">
+            <label for="tipo_assistencia">Tipo de assistência:</label>
+            <select name="tipo_assistencia" id="tipo_assistencia" class="input-form_cad_lote_senhas select-padrao">
+                {% for tipo in tipos_assistencia %}
+                    <option value="{{ tipo.id }}">{{ tipo.tip_assis }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div id="gs-area-campos_vinculo" class="gs-area_campos">
+            <label for="vinculo">Vínculo</label>
+            <select name="vinculo" id="vinculo" class="input-form_cad_lote_senhas select-padrao">
+                {% for v in vinculos %}
+                    <option value="{{ v.id }}">{{ v.vinculo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+    </div>
+    <button type="button" class="btn-acao_gerador_lote" id="btn-verificar">Verificar</button>
+    
+    <hr class="linha-subtitle" id="divisa-filtro_gs">
+
+    <div id="area-geracao_senhas_gs">
+        <div id="gs-area_campos_nome" class="gs-area_campos">
+            <label for="input-nome_lote">Nome do Lote</label>
+            <input type="text" name="nome_lote" id="input-nome_lote" class="input-form_cad_lote_senhas input-padrao" maxlength="25" placeholder='Semana Natalina - dia 1' required>
+        </div>
+
+        <div id="gs-area_intervalo" class="gs-area_campos">
+            <label>Intervalo</label>
+            <div id="area-inputs_intervalo_gs">
+                <input type="number" class="input-intervalo_gs input-padrao" id="input-inter_inicial" name="input_inter_inicial" placeholder="1°">
+                -
+                <input type="number" class="input-intervalo_gs input-padrao" id="input-inter_final" name="input_inter_final" placeholder="100°">
+            </div>
+        </div>
+
+        <div id="gs-area_campos_data" class="gs-area_campos">
+            <label for="input-data_evento">Data do evento</label>
+            <input type="date" name="data_evento" id="input-data_evento" class="input-form_cad_lote_senhas" min="{{ today|date:'Y-m-d' }}">
+        </div>
+
+        <div id="gs-area_camposmsg" class="gs-area_campos">
+            <label for="input-mensagem">Mensagem</label>
+            <textarea name="mensagem" id="input-mensagem" class="input-form_cad_lote_senhas input-padrao"></textarea>
+        </div>
+
+    </div>
+    <div id="area-btn_acao_gerador_lote">
+        <button type="button" class="btn-acao_gerador_lote" id="btn-gerar" style="display: none;" onclick="gerarLote()">Gerar</button>
+        <button type="button" class="btn-acao_gerador_lote" id="btn-limpar" style="display: none;">Limpar</button>
+    </div>
+</form>
+
+<!-- Edição do Lote -->
+<div id="area-editor_lote">
+    <div id="barra-editor_lote">
+        ➕ Editar Lote
+    </div>
+    <div id="area-conteudo_editor_lote">
+        <div id="quant-senhas"></div>
+
+        <div id="senhas-edicao_lote">
+            <table id="tb-assis_lote">
+                <thead>
+                    <tr>
+                        <th>Ordem</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tb_assis_lote">
+                    <!-- O JS irá preencher aqui -->
+                </tbody>
+            </table>
+            <div id="paginacao-lista_temp_gs"></div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- =================Tabela de Exibição================ -->
+<h2 class="subtitle">Lotes Cadastrados</h2>
+<hr class="linha-subtitle">
+
+<table id="tb-lista_senhas_lote" class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome do Lote</th>
+            <th>Senhas válidas</th>
+            <th>Tipo de Assistência</th>
+            <th>Data do evento</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lote in lotes %}
+        <tr>
+            <td class="cln-tb_senhas_lote_view">{{ lote.id }}</td>
+            <td>{{ lote.nome_lote }}</td>
+            <td class="cln-tb_senhas_lote_view">{{ lote.senhas_validas }}</td>
+            <td class="cln-tb_senhas_lote_view">{{ lote.tipo_assistencia }}</td>
+            <td class="cln-tb_senhas_lote_view">{{ lote.data_evento|date:"d/m/Y" }}</td>
+            <td class="cln-tb_senhas_lote_view">{{ lote.status }}</td>
+            <td class="cln-tb_senhas_lote_view" id="cln-acao_tb_senhas_lote_view">
+                <button class="btn-visualizar btn-detalhar_lote" id="btn-ver_lote" data-id="{{ lote.id }}">
+                    <img src="{% static 'images/olho.png' %}" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                    Visualizar
+                </button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">Nenhum lote cadastrado ainda:(</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% block js %}
+    <script src="{% static 'js/ControlesGeradorSenhas.js' %}"></script>
+    <script> const urlGeradorSenhas = "{% url 'gerador-senhas' %}"; </script>
+{% endblock %}
+
+{% endblock %}

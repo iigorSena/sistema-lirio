@@ -1,0 +1,86 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Canvas/css/style_editor_canvas.css' %}">
+{% endblock %}
+
+
+{% block area-exibicao %}
+<main id="main-editor_canvas">
+
+    <!-- Menu lateral -->
+    <div id="menu-lateral_editor_canvas">
+        <label>Tamanho</label>
+        <label for="canvas-largura">Largura:</label><br>
+        <input type="number" id="canvas-largura" value="900"><br><br>
+
+        <label for="canvas-altura">Altura:</label><br>
+        <input type="number" id="canvas-altura" value="600"><br><br>
+
+        <label for="canvas-unidade">Unidade:</label><br>
+        <select id="canvas-unidade">
+            <option value="px" selected>Pixel</option>
+            <option value="cm">Centímetro</option>
+        </select><br><br>
+
+        <button id="btn-aplicar-tamanho">Criar documento</button>
+    </div>
+
+    <!-- Área do canvas -->
+    <div id="area-de_trabalho_canvas">
+        <input type="text" id="template-nome" placeholder="Nome do template">
+        <button id="btn-salvar">Salvar</button><br><br>
+        <canvas id="area-edicao_canvas" width="500" height="300"></canvas>
+    </div>
+
+</main>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/6.0.0/fabric.min.js"></script>
+<script src="{% static 'js/ControlesCanvas.js' %}"></script>
+
+<script>
+
+    const canvas = new fabric.Canvas('area-edicao_canvas');
+
+    function cmToPx(cm) {
+        return cm * 37.795275591; // 1 cm ≈ 37.79 px
+    }
+
+    // Botão criar documento
+    document.getElementById('btn-aplicar-tamanho').addEventListener('click', () => {
+        let largura = parseFloat(document.getElementById('canvas-largura').value);
+        let altura = parseFloat(document.getElementById('canvas-altura').value);
+        const unidade = document.getElementById('canvas-unidade').value;
+
+        if(unidade === 'cm') {
+            largura = cmToPx(largura);
+            altura = cmToPx(altura);
+        }
+
+        // Limpar documento anterior
+        const objs = canvas.getObjects('rect').filter(o => o.docLayout);
+        objs.forEach(o => canvas.remove(o));
+
+        // Criar retângulo do documento
+        const docRect = new fabric.Rect({
+            left: 10,
+            top: 10,
+            width: Math.min(largura, canvas.getWidth() - 20),
+            height: Math.min(altura, canvas.getHeight() - 20),
+            fill: '#ffffff',
+            stroke: '#000000',
+            strokeWidth: 1,
+            selectable: true,
+            hasControls: true,
+            docLayout: true
+        });
+
+        canvas.add(docRect);
+        canvas.setActiveObject(docRect);
+        canvas.renderAll();
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Canvas/css/style_gerenciar_canvas.css' %}">
+{% endblock %}
+
+{% block  area-exibicao%}
+    <h2 class="title-pag">Canvas</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+    <button id="btn-abrir-canvas">
+        Criar Canvas
+    </button>
+
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/ControlesGerenciadorCanvas.js' %}"></script>
+{% endblock %}

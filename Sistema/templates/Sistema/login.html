@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="static/css/style_global.css">
+    <link rel="stylesheet" href="{% static 'Sistema/css/style_login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Login | CEJA</title>
+</head>
+
+<body>
+    <div id='main'>
+        <img src="{% static 'images/logo.png' %}" style="height: 20vh">
+        <form id="form_login" method="POST">
+            {% csrf_token %}
+            <h1>Login - Lírio</h1>
+
+            <div id="area_username" class="area_login">
+                {{ login_form.username.label_tag }}
+                {{ login_form.username }}
+            </div>
+
+            <div id="area_password" class="area_login">
+                {{ login_form.password.label_tag }}
+                {{ login_form.password }}
+            </div>
+
+            {% if error_message %}
+                <span id="msg-login_error">{{ error_message }}</span>
+            {% endif %}
+
+            <button id="btn_login" class="btn_global" type="submit">Entrar</button>
+            <p id="versao">Versão 5.16.17</p>
+        </form>
+    </div>
+</body>
+</html>

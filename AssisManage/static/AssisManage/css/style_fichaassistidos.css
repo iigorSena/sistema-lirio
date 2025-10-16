@@ -1,64 +1,32 @@
-body{
-    border: 0;
-    margin: 0;
-    padding: 0;
-    background-color: #051753;
+#main-ficha_assistencial{
     display: flex;
-    flex-direction: column;
-    font-family: 'Montserrat';
-
-}
-
-#barra_de_nav{
-    border: 0;
-    margin: 0px;
-    padding: 0;
-    background-color: white;
+    flex-wrap: wrap;
     width: 100%;
-    height: 10%;
-    display: flex;
     justify-content: center;
 }
 
-#main{
-    padding-top: 30px;
+/* Dados Pessoais */
+#ficha-assistido-form{
+    width: 50%;
     display: flex;
+    flex-direction: column;
+    margin-right: 5px;
 }
 
-#ficha-assistido-form{
-    width: 60%;
+#fieldset-grupo-form{
+    width: 95%;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#fieldset-grupo-form{
-    width: 50vw;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
     border: 2px solid white;
-}
-#form-bloco1{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-#area-input-nome{
-    width: 90%;
-}
-#area-input-id{
-    width: 10%;
-}
-#input-id{
-    font-size: 12pt;
-    font-weight: bold;
-    color: black;
+    padding: 10px;
 }
 
-#form-bloco2{
+.bloco{
     width: 100%;
+    margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -66,228 +34,230 @@ body{
 .form-group{
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    justify-content: left;
+    margin-inline: 5px;
 }
 .label-form{
+    color: #ffffff;
     font-weight: bold;
-    color: white;
-}
-.input-form{
-    font-size: 12pt;
-    color: #000000;
-}
-#input-tel, #input-data_nascimento, #input-cpf, #cep{
-    text-align: center;
-}
-#input-tel{
-    width: 11vw;
-}
-#area-input-cpf{
-    width: 11vw;
-}
-#area-input-datanasci{
-    width: 13vw;
 }
 
-#input-data_nascimento{
-    width: 8vw;
+#area-input-nome{
+    width: 89%;
 }
+#area-input-id{
+    width: 6%;
+}
+#input-id{
+    color: white;
+    background-color: #1236aa;
+}
+
+#area-input-tel, #area-input-tel2, #area-input-cpf, #area-input-datanasci{
+    width: calc(93% / 4)
+}
+
 #area-input-nomemae{
-    width: 25vw;
-    margin-right: 15px;
+    width: 97%;
+    margin-bottom: 10px;
 }
 #area-input-cep{
-    width: 10vw;
+    width: 20%;
 }
-#area-input-cidade{
-    width: 25vw;
+#area-input-cidade, #area-input-bairro{
+    width: calc(75% / 2);
+    margin-bottom: 10px;
 }
-#area-input-bairro{
-    width: 20.5vw;}
 #area-input-logradouro{
-    width: 18vw;
-    margin-right: 15px;
+    width: 55%;
 }
 #area-input-numero{
-    width: 5vw;
+    width: 10%;
 }
-#input-numero{
+#area-input-vinculo{
+    width: 30%;
+}
+#area-tip_assistencia{
+    width: 97%;
+}
+.checkbox-padrao{
+    background-color: #D6e4f0;
+    border-bottom: 5px solid #808080;
+    padding-block: 5px;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    
 }
-.input-tip_assis{
-    font-size: 12pt;
-    font-weight: bold;
-    color: white;
+.checkbox-padrao label{
+    color: #0f2775;
 }
+#area-input-observaco{
+    width: 97%;
+}
+#input-observacao{
+    resize: none;
+    height: 90px;
+    font-size: 13pt;
+}
+
+/* Detalhes */
+#area-detalhes_ficha_assistido_form{
+    width: 96%;
+    color: rgb(206, 206, 206);
+    font-size: 10pt;
+}
+#area-detalhes_ficha_assistido_form label{
+    color: rgb(206, 206, 206);
+
+}
+
+
+/* Área de Botões */
 #area-btns-form{
-    margin-top: 10px;
-    width: 50vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: right;
+    margin-top: 10px;
+    gap: 5px;
 }
-input[type="checkbox"]:disabled{
-    background: #372af1;
+#area-btn_voltar{
+    flex: 1;
 }
 
-
-.btns-form{
-    width: 8vw;
-    font-weight: bold;
-    padding: 5px;
-    background-color: #051753;
-    border: 1px solid white;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-left: 5px;
-}
-.btns-form:hover{
-    background-color: rgb(218, 217, 217);
-}
-#btn-editar-form{
-    color: yellow;
-    
-}
 #btn-salvar-form{
-    color: #00ca00;
     display: none;
-
 }
-
 #btn-cancelar-form{
-    color: red;
     display: none;
 }
 
-#btn-voltar-form{
-    color: #ffffff;
+
+/* Área Históricos ====================== */
+#area-historicos_assis{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-
+/* Histórico Assistências */
 #are-hist_assis{
-    width: 40%;
-    margin-inline: 20px;
-
+    width: 100%;
 }
-#title-Historico{
+.subtitle{
     width: 100%;
     text-align: center;
     font-weight: bold;
     color: white;
+    margin-block: 0px;
+    background-color: #1236aa;
+    cursor: pointer;
 }
 hr{
-    width: 80%;;
+    width: 80%;
+    margin-block: 0px;
 }
-#msg-registro-n-encontrado{
-    color: rgb(250, 0, 0);
+td{
     text-align: center;
 }
 
+/* Histórico de Senhas */
+#area-hist-senhas{
+    width: 100%;
+}
+
+
 @media (max-width: 950px) {
-    #main{
+    
+    #ficha-assistido-form{
         width: 100%;
-        display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0px;
+    }
+    #fieldset-grupo-form{
+        width: 92%;
+    }
+    
+    #area-input-nome{
+        width: 80%;
+    }
+    #area-input-id{
+        width: 14%;
+    }
+    
+    #area-input-tel, #area-input-tel2, #area-input-cpf, #area-input-datanasci{
+        width: calc(93% / 2);
+        gap: 5px;
+    }
+    #area-input-tel, #area-input-tel2{
+        margin-bottom: 10px;
+    }
+
+    #area-input-nomemae{
+        width: 96%;
+        margin-bottom: 10px;
+    }
+    #area-input-cep{
+        width: 30%;
+    }
+    #area-input-cidade{
+        width: 64%;
+    }
+    #area-input-bairro, #area-input-logradouro{
+        width: calc(94% / 2);
+        margin-bottom: 10px;
+    }
+
+    #area-input-numero{
+        width: 20%;
+    }
+    #area-tip_assistencia{
+        width: 95%;
+    }
+
+    .btns-form{
+        width: 25vw;
+        margin-block: 10px;
+    }
+
+
+    #area-historicos_assis{
+        width: 100%;
+    }
+    #are-hist_assis{
+        width: 100%;
+        margin-bottom: 10px;
+    
     }
 }
 
-@media (max-width: 800px) {
-    #main{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #ficha-assistido-form{
-        width: 95%;
-    }
-    #fieldset-grupo-form{
-        width: 100%;
-        box-sizing: border-box;
-        border: 2px solid white;
-    }
-
-    #form-bloco2, #form-bloco1{
-        width: 100%;
-    }
-    .input-form{
-        border-radius: 5px;
-    }
-    #area-input-id{
-        width: 10%;
-    }
-    #area-input-nome{
-        width: 90%;
-        border-radius: 5px;
-    }
-    #input-tel{
-        width: 33vw;
-    }
-    #area-input-cpf{
-        width: 33vw;
-    }
-    #area-input-datanasci{
-        width: 31vw;
-    }
-    #input-data_nascimento{
-        width: 25vw;
-    }
-    #area-input-nomemae{
-        width: 54%;
-        margin-right: 15px;
-    }
-    #area-input-cep{
-        width: 24vw;
-    }
-    #area-input-cidade{
-        width: 45vw;
-    }
-    #area-input-bairro{
-        width: 80%;}
-    #area-input-logradouro{
-        width: 45vw;
-    }
-    #area-input-numero{
-        width: 13vw;
-    }
-    #input-numero{
-        display: flex;
-        align-items: center;
-    }
+@media (max-width: 1200px) {
     
+    #ficha-assistido-form{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0px;
+    }
+
     #area-btns-form{
-        margin-top: 10px;
-        width: 95%;
+        width: 97%;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: right;
+        margin-top: 10px;
+        gap: 5px;
     }
-    .btns-form{
-        width: 26vw;
-        padding: 10px;
-        background-color: #051753;
-        border: 2px solid white;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        margin-left: 10px;
+    #area-historicos_assis{
+        width: 97%;
     }
-
-
     #are-hist_assis{
-        width: 90%;
-        margin-top: 20px;
+        width: 97%;
+        margin-bottom: 10px;
+    
     }
-    #msg-registro-n-encontrado{
-        text-align: center;
-    }
+    
 }

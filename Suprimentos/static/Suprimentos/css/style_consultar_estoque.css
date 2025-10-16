@@ -1,0 +1,55 @@
+#main-consulta_estoque{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#area-busca_tb_consulta_estoque{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+#form-pesquisa_tb_consulta_estoque{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+#input-busca_tb_consulta_estoque{
+    flex: 1;
+}
+#area-info_tb_consulta_estoque{
+    color: white;
+    margin-top: 5px;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+#linha-divi_consulta_estoque{
+    width: 82%;
+    border: 1px solid #36b6ff;
+    margin-block: 10px;
+}
+/* Área de Exibição dos Resultados */
+#area-result_consulta_estoque{
+    width: 82%;
+}
+#cab-cod_consulta_estoque{
+    width: 10%;
+}
+#cab-valid_consulta_estoque{
+    width: 15%;
+}
+#cln-cod_consulta_estoque, #cln-lote_consulta_estoque, #cln-quant_consulta_estoque, #cln-valid_consulta_estoque{
+    text-align: center;
+}
+
+@media (max-width: 950px){
+    #area-busca_tb_consulta_estoque, #area-result_consulta_estoque{
+    width: 95%;
+}
+}

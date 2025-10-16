@@ -1,0 +1,54 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_cad_categorias_itens.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Cadastro de Categorias</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-cad_categorias_supri'>
+    <form id="area-cad_categorias_itens" class="form-padrao">
+        {% csrf_token %}
+        <input type="text" class="input-padrao" name="nome" id="input-cad_categ_itens" placeholder="Add uma nova categoria">
+        <button type="submit" class="btn-padrao_redondo">
+            <img src="{% static 'images/mais.png' %}">
+        </button>
+    </form>
+
+    <div id="area-visu_categorias_itens">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Categoria</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <td class="cln-text_padrao">{{ categoria.id }}</td>
+                    <td class="cln-nome_padrao">{{ categoria.nome }}</td>
+                    <td class="cln-text_padrao">{{ categoria.status }}</td>
+                    <td class="cln-elementos_padrao">
+                        <img src="{% static 'images/lapis-amarelo.png' %}" class="btn-img_acao_lista_categ">
+                        <img src="{% static 'images/confirmar.png' %}" class="btn-img_acao_lista_categ" style="display: none">
+                        <img src="{% static 'images/cancelar.png' %}" class="btn-img_acao_lista_categ"style="display: none">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</main>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ControlesCadCAtegItem.js' %}"></script>
+    <script> const urlCadCategItemm = "{% url 'cad_categorias_itens' %}";</script>
+{% endblock %}

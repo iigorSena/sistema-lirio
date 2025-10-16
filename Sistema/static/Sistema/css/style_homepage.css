@@ -1,0 +1,42 @@
+h3{
+    color: white;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+#area-atalhos_home{
+    margin-top: 5vh;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.btn-atalho_home{
+    background-color: #051753;
+    border: 3px solid #072792;
+    padding-block: 5px;
+    width: 12%;
+    font-size: 11pt;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btn-atalho_home:hover{
+    box-shadow: 0px 5px 20px #36B6FF;
+    transform: translateY(-8px) scale(1.03);
+    background-color: #051753;
+    border: 2px solid white;
+}
+
+@media (max-width:950px){
+    .btn-atalho_home{
+        width: 40%;
+    }
+}

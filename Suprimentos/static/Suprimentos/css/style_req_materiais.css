@@ -1,0 +1,82 @@
+#main-req_materiais{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#area-busca_minhas_rms{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#form-requsicao_materiais{
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+#input-nrm_pesquisa{
+    flex: 1;
+    margin-right: 10px;
+}
+#area-btn_nova_rm{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items:baseline;
+    width: 30%;
+}
+
+/* Área da Tabela */
+#area-tb_minhas_rms{
+    width: 80%;
+}
+.cln-tb_minhas_rms{
+    text-align: center;
+}
+th{
+    width: 25%;
+}
+#cln-acao_tb_minhas_rms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+}
+
+#btn_nova_rm_mobile{
+    display: none;
+}
+
+@media (max-width: 950px){
+#area-busca_minhas_rms, #area-tb_minhas_rms{
+    width: 95%;
+}
+#area-btn_nova_rm{
+    width: auto;
+    height: 100%;
+    border-left: 1px solid #36B6FF;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#btn_nova_rm_mobile{
+    display: block;
+    height: 40px;
+}
+#btn-nrm_pesquisa{
+    width: 97%;
+}
+#btn_nova_rm{
+    display: none;
+}
+#area-tb_minhas_rms{
+    margin-top: 15px;
+}
+}
+

@@ -1,0 +1,156 @@
+#area-dashboard_atf{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 95%;
+    gap: 10px;
+}
+/* Área de Filtros */
+#area-filtros_dash_atf{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    overflow: hidden;
+    background-color: #01071D;
+    padding-inline: 5px;
+}
+#form-filtros_dash_atf{
+    width: 100%;
+}
+.filtro-dash_atf{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 5px;
+    font-size: 10pt;
+    gap:2px;
+}
+.filtro-dash_atf label{
+    color: #36B6FF;
+}
+input, select{
+    font-size: 11pt;
+    padding-block: 2px;
+}
+input[type="checkbox"] {
+    accent-color: #36B6FF;
+}
+
+.btn-padrao{
+    width: 100%;
+    padding-block: 2px;
+}
+
+/* Área de Resultados */
+#area-resultados_dash_atf{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content:top;
+    overflow: hidden;
+}
+#area-indicadores_dash_atf{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.area-indicador_ind_dash_atf{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    padding-block: 8px;
+    padding-left: 5px;
+    font-weight: bold;
+    border: 1px solid white;
+    gap: 6px;
+    background: linear-gradient(to right, #020e3a, #093761);
+}
+.indicador-dash_atf{
+    color: white;
+}
+.indicador-valor_dash_atf{
+    color: rgb(255, 196, 0);
+}
+
+
+/* Dashboard */
+#area-graficos_dash_atf{
+    background-color: #01071d;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-block: 10px;
+    gap: 10px;
+    margin-top: 5px;
+}
+.area-grafico_dash_atf{
+    background: linear-gradient(to top, #020e3a, #093761);
+    border-bottom: 1px solid white;
+    border-radius: 5px;
+    height: 50vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#area-grafico_barraunica_dash_atf{
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#grafico-barraunica_facili{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+#area-grafico_barras_dash_atf{
+    width: 50%;
+    
+}
+#area-leg_grafico{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-block: 10px; 
+    font-size: 10pt;
+    font-weight: bold;  
+    gap: 20px   ;
+}
+.subarea-leg_grafico{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 11pt;
+}
+#area-grafico_pizza_dash_atf{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#area-grafico_pizza_dash_atf span{
+    margin-bottom: 20px;
+}
+#grafico-pizza_facili{
+    height: 250px;
+    width: 100%;
+    object-fit: contain;
+}

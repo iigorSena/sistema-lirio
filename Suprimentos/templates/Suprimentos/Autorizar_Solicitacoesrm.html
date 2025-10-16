@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_autorizar_solicitacoes.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Autorizar Solicitações</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-aut_solicitacoes'>
+    <div id="area-busca_aut_solicitacoes" class="form-padrao">
+        <form method="get" id="form-pesquisa_aut_solicitacoes">
+            <input id="input-busca_aut_solicitacoes" type="search" name="busca" value="{{ busca }}" placeholder="Digite o código ou nome da RM...">
+            <button id="btn-pesquisar_aut_solicitacoes" class="btn-padrao" disabled>
+                <img src="{% static 'images/lupa.png' %}" alt="Editar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Buscar
+            </button>
+        </form>
+        <div id="area-info_aut_solicitacoes">
+            <span class="span-quant">RMs encontradas: {{ total }} </span> 
+        </div>
+    </div>
+
+    <hr class="linha-subtitle">
+
+    <div id="area-aut_solicitacoes">
+        <table id="tb-aut_solicitacoes">
+            <thead>
+                <tr>
+                    <th id="cab-rm_aut_solicitacao">RM</th>
+                    <th id="cab-solicitante_aut_solicitacao">Solicitante</th>
+                    <th id="cab-datasol_aut_solicitacao">Data Solicitação</th>
+                    <th id="cab-dataaut_aut_solicitacao">Data Autorização</th>
+                    <th id="cab-status_aut_solicitacao">Status</th>
+                    <th id="cab-acao_aut_solicitacao">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for AutView in autorizacoes  %}
+                <tr>
+                    <td id="cln-nrm_aut_solicitacoes" class="clns-aut_solicitacoes">{{ AutView.Nrm.rm }}</td>
+                    <td id="cln-solicitante_aut_solicitacoes" class="clns-aut_solicitacoes">{{ AutView.Nrm.solicitante|default:"-" }}</td>
+                    <td id="cln-datasol_aut_solicitacoes" class="clns-aut_solicitacoes">{{ AutView.Nrm.data_solic|date:"d/m/Y - H:i"|default:"-" }}</td>
+                    <td id="cln-dataaut_aut_solicitacoes" class="clns-aut_solicitacoes">{{ AutView.data_autor|date:"d/m/Y - H:i"|default:"-" }}</td>
+                    <td id="cln-status_aut_solicitacoes" class="clns-aut_solicitacoes" data-status="{{ AutView.status|lower }}">{{ AutView.status }}</td>
+                    <td id="cln-acao_aut_solicitacoes">
+                        <button id="btn-abrir_rm_aut" class="btn-abrir_rm_aut btn-visualizar" data-id="{{ AutView.id }}">
+                            <img src="{% static 'images/olho.png' %}">
+                            Abrir
+                        </button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhuma requisição por aqui...</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+</main>
+    
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ControlesAutRM.js' %}"></script>
+{% endblock %}

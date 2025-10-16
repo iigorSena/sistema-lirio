@@ -1,0 +1,53 @@
+#main-cad_fornecedores_supri{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Área de Cadastro das Categorias */
+#area-cad_fornecedores_supri{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+#input-cad_nome_fornecedor_itens{
+    width: 40%;
+}
+#input-cad_cep_fornecedor_itens{
+    width: 10%;
+}
+#input-cad_uf_fornecedor_itens{
+    width: 7%;
+}
+#input-cad_obs_fornecedor_itens{
+    resize: none;
+    width: 50%;
+    height: 2.5vh;
+}
+
+#area-btn_cad_fornecedor{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+/* Área de exibição das Categorias */
+#area-visu_fornecedor_itens{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+table{
+    width: 100%;
+}
+.btn-img_acao_lista_fornecedor{
+    height: 18px;
+    cursor: pointer;
+}

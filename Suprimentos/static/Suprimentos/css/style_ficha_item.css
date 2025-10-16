@@ -1,0 +1,97 @@
+#main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#form-ficha_item_supri{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#fieldset-grupo_item_form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    border:2px solid white;
+    border-radius: 10px;
+    padding-block: 20px;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+#area-input-nome{
+    width: 80.5%;
+}
+#area-input-unidade{
+    width: 18%;
+}
+#area-input-descricao{
+    width: 100%;
+}
+#input-text-item{
+    resize: none;
+}
+#area-input-categoria{
+    width: 43%;
+}
+
+#area-input-estmin, #area-input-estmax{
+    width: 20%;
+}
+#area-input-status{
+    width: 13%;
+}
+
+
+/* Área de Detalhes */
+#area-detalhes_ficha_item_form{
+    color: white;
+    font-weight: bold;
+    font-size: 10pt;
+    margin-top: 5px;
+}
+/* Área de Btns */
+#area-btns_acao_item_form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 5px;
+    margin-top: 10px;;
+}
+#area-btn_voltar{
+    flex: 1;
+}
+#btn-salvar_item_form, #btn-cancelar_item_form{
+    display: none;
+}
+
+@media (max-width: 950px){
+#form-ficha_item_supri{
+    width: 95%;
+}
+#area-input-nome{
+    width: 75%;
+}
+#fieldset-grupo_item_form{
+    align-items: flex-end;
+}
+#area-input-descricao{
+    width: 95%;
+}
+#area-input-categoria{
+    width: 50%;
+}
+#area-input-status{
+    width: 30%;
+}
+}

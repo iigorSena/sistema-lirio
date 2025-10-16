@@ -1,0 +1,35 @@
+{% extends "Sistema/modelo.html" %}
+{% load static %}
+
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_gerenciar_assistidos.css' %}">
+{% endblock %}
+
+
+{% block title %}
+<title>Cadastro em Massa | CEJA</title>
+{% endblock %}
+
+
+{% block  area-exibicao%}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Importar</button>
+</form>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+        
+{% block js %}
+    <script src="{% static 'js/ControlesCadAssis.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

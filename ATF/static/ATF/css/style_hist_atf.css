@@ -1,0 +1,189 @@
+
+#title-pag{
+    font-size: 15pt;
+    text-align: center;
+}
+#tb-Hist_Atend_Atf{
+    border-collapse: collapse;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+#area-opcoes_tb_Hist_Atend_Atf{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    position: sticky;
+    top: 0.5px;
+    background-color: #051753;
+}
+#btn-pop_cad_hist_atend_atf{
+    background-color: #36b6ff;
+    color: white;
+    font-weight: bold;
+    padding-block: 5px;
+    border-radius: 5px;
+}
+thead{
+    position: sticky;
+    top: 27px;
+    box-shadow: 0px 5px 15px black;
+}
+tbody{
+    font-size: 12pt;
+    font-weight: bold;
+}
+th {
+    background-color: #f4f4f4;
+    text-align: center;
+    font-weight: 900;
+}
+th, td {
+    border: 1px solid #ccc;
+}
+td{
+    color: white;
+    padding-block: 2px;
+    border-inline: none;
+}
+tr:hover {
+    background-color: #0f2775;
+}
+.input-tb_Hist_Atend_Atf{
+    font-size: 12pt;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    width: 99%;
+}
+.input-tb_Hist_Atend_Atf:focus{
+    background-color: #112f92;
+}
+#cln-id_tb_Hist_Atend_Atf{
+    width: 4vw;
+    text-align: center;
+    border-right: solid 1px white;
+}
+#cln-facilitador_tb_Hist_Atend_Atf{
+    width: 35vw;
+}
+#cln-1vez_tb_Hist_Atend_Atf, #cln-retorno_tb_Hist_Atend_Atf{
+    width: 5vw;
+}
+#input-1_vez_histatf, #input-retono_histatf, #cln-data_tb_Hist_Atend_Atf{
+    text-align: center;
+}
+#cln-data_tb_Hist_Atend_Atf{
+    text-align: center;
+    width: 9vw;
+}
+#cln-acao_tb_Hist_Atend_Atf{
+    width: 5.5vw;
+    padding-block:5.5px;
+    display: flex;
+    gap:0px;
+    justify-content: center;
+    border-left: 1px solid white;
+}
+.btn-action_Hist_Atend_Atf{
+    background-color: transparent;
+    border: none;
+}
+
+
+/* ========================= POP-UP de cadastro =============================== */
+#sombra-popup_cad_atend_atf{
+    display: none;
+    position:fixed;
+    z-index: 1000;
+    background-color: rgb(0,0,0, 0.5);
+    width: 100%;
+    height: 100vh;
+
+}
+#form-Cad_Atend_Atf{
+    position: fixed;
+    top: 100px;
+    left: 25%;
+    color: white;
+    background-color:#0f2775;
+    border-radius: 8px;
+    width: 45vw;
+    padding-inline: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#title-pag{
+    font-size: 10pt;
+}
+
+#area-btn_close_cd_atend_atf{
+    position:fixed;
+    z-index: 1000;
+    top: 110px;
+    right:28%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin: 0px;
+}
+#area-campos_Cad_Atend_Atf{
+    display: flex;
+    flex-wrap: wrap;
+    gap:5px;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding-block: 15px;
+    margin-top: -15px;
+
+}
+#select-Cad_Atend_Atf{
+    color: white;
+    background-color: transparent;
+    border-radius: 5px;
+}
+option{
+    color: #112f92;
+    font-weight: bold;
+}
+.area-campo_input_Cad_Atend_Atf{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+}
+.label-campo_input_Cad_Atend_At{
+    margin-bottom: 5px;
+    font-size: 10pt;
+    font-weight: bold;
+}
+.input_Cad_Atend_Atf{
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    background-color: transparent;
+}
+#btn-cad_atend_atf{
+    background-color: #36b6ff;
+    border: 1px solid #0f2775;
+    color: white;
+    font-weight: bold;
+    padding-block: 5px;
+    padding-inline: 30px;
+    border-radius: 5px;
+    margin-block: 10px;
+}
+#area-btn-cad_atend_atf{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#btn-cad_atend_atf:hover{
+    background-color: transparent;
+    border: 1px solid white;
+}

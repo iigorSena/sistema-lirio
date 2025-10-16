@@ -1,0 +1,175 @@
+/* Area de Visualização */
+#area-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+    color: white;
+    font-weight: bold;
+    font-size: 25pt;
+    margin-bottom: 0px;
+}
+.linha-title{
+    border: none;
+    height: 4px;
+    width: 25vw;
+    margin-bottom: 30px;
+}
+
+#form-dados-assis{   
+    width: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding-block: 25px;
+    gap: 10px;
+
+}
+.input-form{
+    color: #051753;
+    font-size: 14pt;
+    border-radius: 5px;
+    border: none;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+#nome-form_view_atend, #mae-form_view_atend{
+    width: 60%;
+}
+#data-form_view_atend{
+    width: 20%;
+}
+
+#data_nasci{
+    text-align: center;
+}
+
+
+/* Area de Registro */
+#form-cad_hist_atend{
+    width: 100%;
+    margin-top: 50px;
+}
+#area-validacao-dados{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.area-input_dados{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+#tipassis-form_cad_hist{
+    width: 35%;
+}
+#local-form_cad_hist{
+    width: 35%;
+}
+#local-form_cad_hist select, #tipassis-form_cad_hist select{
+    font-size: 12pt;
+    padding-block: 5px;
+    background-color: #d6e4f0;
+}
+
+#data-form_cad_hist{
+    width: 25%;
+}
+
+hr{
+    width: 100%;
+}
+
+#area-validacao-Atendimento{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+#area-checagem{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+#input-cpf_busca{
+    font-size: 12pt;
+    padding-block: 8px;
+}
+#btn-pesquisar-numero{
+    font-size: 15pt;
+    font-weight: bold;
+    color: white;
+    background-color: #00ff00;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-block: 6px;
+    padding-inline: 5px;
+    gap: 5px;
+}
+
+#btn-validar-atendimento{
+    padding-block: 10px;
+    padding-inline: 15px;
+    font-size: 13pt;
+    font-weight: bold;
+    color: #051753;
+    background-color: white;
+    box-shadow: 0px 4px 15px black;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+#btn-validar-atendimento:disabled{
+   box-shadow: none;
+   color: #d1d1d1;
+   background-color: rgb(175, 175, 175);
+   cursor: default;
+}
+
+/* RESOLUÇÃO 900PX */
+@media (max-width: 900px) {
+    #area-form{
+    width: 100%;
+    }
+    .linha-title{
+    margin-bottom: 10px;
+    }
+    #form-dados-assis{   
+    width: 95%; 
+    border: 4px solid white;
+    padding-block: 20px;
+    gap: 10px;
+    }
+    #nome-form_view_atend, #mae-form_view_atend, #data-form_view_atend{
+    width: 90%;
+    }
+    #data_nasci{
+        text-align: left;
+    }
+
+    /* Area de Registro */
+    #form-cad_hist_atend{
+    width: 80%;
+    margin-top: 25px;
+    }
+    #tipassis-form_cad_hist, #local-form_cad_hist, #data-form_cad_hist{
+        width: 80%;
+    }
+
+}

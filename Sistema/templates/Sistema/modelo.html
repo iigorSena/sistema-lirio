@@ -1,0 +1,390 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/style_global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_mensagens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_global_800_mxw.css' %}">
+    <link rel="stylesheet" href="{% static 'Sistema/css/style_modelo.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    {% block area-conexao %}
+    {% endblock %}
+    
+    {% block title %}
+    <title>Modelo | Lírio</title>
+    {% endblock %}
+
+</head>
+
+<body>
+    <header id="cabecalho">
+        <div id="area-config">
+            <div id="area-config_logo">
+                <a href="{% url 'home' %}">
+                <img src="{% static 'Sistema/images/logo.png' %}" id="img-logo">
+                <span id="nome-sistema">Sistema de Gerenciamento Lírio</span>
+                </a>
+            </div>
+
+            <div id="area-config_user">
+                <div id="area-detalhes_user">{{ request.user.username }} | {{ request.user.groups.first.name }} |</div>
+                <button type="button" id="btn-logout" onclick="window.location.href='{% url 'logout' %}'">
+                    <img src={% static "Sistema/images/logout.png" %} id="img-logout">
+                </button>
+                <button id="btn-menu-mobile" onclick="toggleMenuMobile()">☰</button>
+            </div>
+        </div>        
+
+        <!-- Menu mobile (oculto por padrão, será exibido ao clicar no botão) -->
+        <div id="menu-mobile" class="menu-mobile">
+             {% if perms.Sistema.cadastrar_assistido %}
+            <button type="button" id="btn-submenu_cadastrar_assis" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'cadastrar-assistido' %}">
+                <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                Cadastrar Assistido</button>{% endif %}
+
+             {% if perms.Sistema.visualizar_visitantes or perms.Sistema.visualizar_obreiros_mediuns %}
+            <button type="button" id="btn-submenu_listar_assis_mobi" class="btn-submenudp" data-target="area-submenu_listar_assis_mobi">
+                Listar Assistidos
+                <img src="{% static 'Sistema/images/mais.png' %}"></button>{% endif %}
+                
+            <div id="area-submenu_listar_assis_mobi">
+                {% if perms.Sistema.visualizar_visitantes %}
+                <button type="button" id="btn-menu_visitantes" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'lista-visitantes' %}">
+                    <img src="{% static 'Sistema/images/visitante.png' %}">
+                    Visitantes</button>{% endif %}
+
+                {% if perms.Sistema.visualizar_obreiros_mediuns %}
+                <button type="button" id="btn-menu_obreiros_mediuns" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'cadastrar-assistido' %}">
+                    <img src="{% static 'Sistema/images/obreiros_mediuns.png' %}">
+                    Obreiros/Médiuns</button>{% endif %}
+            </div>
+
+            {% if perms.Sistema.entregar_cesta_basica %}
+            <button type="button" id="btn-menu_entregar_cestas" class="btn-submenu btn-nav_menu"
+            data-url="{% url 'entrega-cesta' %}">
+                <img src="{% static 'Sistema/images/entrega.png' %}">
+                Entregar Cestas</button>{% endif %}
+
+            {% if perms.Sistema.gerar_senhas_lote %}
+            <button type="button" id="btn-menu_gerador_senhas" class="btn-submenu btn-nav_menu"
+            data-url="{% url 'gerador-senhas' %}">
+                <img src="{% static 'Sistema/images/senhas.png' %}">
+                Gerador de Senhas</button>{% endif %}
+
+            <!-- Suprimentos Mobile -->
+            {% if perms.Sistema.consultar_estoque %}
+            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'requisicao_materiais' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Requisitar Materiais</button>{% endif %}
+            
+            {% if perms.Sistema.consultar_estoque %}
+            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'consultar_estoque' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Consultar Estoque</button>{% endif %}
+
+            {% if perms.Sistema.registrar_entrada %}
+            <button type="button" id="btn-submenu_mov_estq_mobi" class="btn-submenudp btn-nav_menu" data-target="area-submenu_mov_estoque_mobi">    
+                Movimentação de Estoque
+                <img src="{% static 'Sistema/images/mais.png' %}">
+            </button>{% endif %}
+            
+            <div id="area-submenu_mov_estoque_mobi">
+                {% if perms.Sistema.registrar_entrada %}
+                <button type="button" id="btn-submenu_nova_entrada" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'nova-entrada-supri' %}">
+                    <img src="{% static 'Sistema/images/mais.png' %}">
+                    Nova Entrada</button>{% endif %}
+
+                {% if perms.Sistema.registrar_saida %}
+                <button type="button" id="btn-submenu_nova_entrada" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'autorizar-solicitacao-rm' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Autorizar Solicitações</button>{% endif %}
+            </div>
+
+            {% if perms.Sistema.listar_itens_almoxarifado %}
+            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'listar-itens' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Listar Ítens</button>{% endif %}
+
+            {% if perms.Sistema.ver_historico_movimentacao %}
+            <button type="button" id="btn-submenu_mov_estq" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'listar-itens' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Histórico de Movimentação</button>{% endif %}
+
+            {% if perms.Sistema.ver_relatorios_indicadores %}
+            <button type="button" id="btn-submenu_mov_estq" class="btn-submenu btn-nav_menu"
+                data-url="{% url 'listar-itens' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Relatórios & Indicadores</button>{% endif %}
+
+            {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+            <button type="button" id="btn-submenu_mov_estq" class="btn-submenudp btn-nav_menu" data-target="area-submenu_gerencia_estoque_mobi">
+                Gerência
+                <img src="{% static 'Sistema/images/mais.png' %}">
+                </button>{% endif %}
+
+            <div id="area-submenu_gerencia_estoque_mobi">
+                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                <button type="button" id="btn-submenu_cad_categorias" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'cad_categorias_itens' %}">
+                    <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                    Categorias</button>{% endif %}
+
+                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                <button type="button" id="btn-submenu_cad_fornecedores" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'cad_marcas_itens' %}">
+                    <img src="{% static 'Sistema/images/mais.png' %}">
+                    Marcas </button>{% endif %}
+
+                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                <button type="button" id="btn-submenu_cad_fornecedores" class="btn-submenu2 btn-nav_menu"
+                data-url="{% url 'cad_fornecedor_itens' %}">
+                    <img src="{% static 'Sistema/images/mais.png' %}">
+                    Fornecedores</button>{% endif %}
+            </div>
+
+                        {% if request.user.groups.all.0.name == "Sistema" %}
+                <a href="{% url 'dashboard-atf' %}">Dashboard ATF</a>
+                <a href="{% url 'historico-atf' %}">Histórico ATF</a>
+                <a href="{% url 'atf-arquivo' %}">Prontuários</a>
+                <a href="{% url 'atf-gerenciamento' %}">Gerenciar ATF</a>
+            {% endif %}
+
+            {% if perms.Sistema.gerar_senhas_lote %}
+            <div id="area-dropdown_mdl_gerencia" class="area-dropdown-mdl">
+                <select id="btn-mdl_atf" class='btn-mdl' onchange="location = this.value">
+                    <option value="{% url 'home' %}">ATF</option>
+                    <option value="{% url 'dashboard-atf' %}">Dashboard</option>
+                    <option value="{% url 'historico-atf' %}">Histórico ATF</option>
+                    <option value="{% url 'atf-arquivo' %}">Prontuários</option>                
+                    <option value="{% url 'atf-gerenciamento' %}">Gerenciar ATF</option>                
+                </select>
+            </div>
+            {% endif %}
+
+            <div id="area-detalhes_user_mobi">
+                {{ request.user.username }} | {{ request.user.groups.first.name }} |
+            <a href="{% url 'logout' %}">
+                <img src="{% static 'Sistema/images/logout.png' %}" alt="Sair" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+                Sair
+            </a></div>
+        </div>
+    </header>
+
+    <!-- ================================== Menu Desktop ======================================= -->
+    <div id="area-trabalho">
+        {% block area-menu %}
+        <div id="area-menu" class="area-menu_aberto">
+            <div id="area-recolhimento_menu">
+                <img src="{% static 'images/recolher.png' %}" id="img-recolher_menu">
+                <img src="{% static 'images/desrecolher.png' %}" id="img-desrecolher_menu">
+            </div>
+            <div id="area-btns_menu">
+                <div class="area-btns_menu">
+                    {% if perms.Sistema.acesso_assistencia %}
+                    <button type="button" class="btn-menu btn-nav_menu" id="btn-menu_gp">
+                        Gestão de Pessoas
+                        <img src="{% static 'Sistema/images/mais.png' %}"></button>
+                    {% endif %}
+
+                    <div id="area-submenu_gp" class="area-submenu">
+                        {% if perms.Sistema.cadastrar_assistido %}
+                        <button type="button" id="btn-submenu_cadastrar_assis" class="btn-nav_menu btn-submenu"
+                        data-url="{% url 'cadastrar-assistido' %}">
+                            <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                            Cadastrar Assistido</button>{% endif %}
+
+                        {% if perms.Sistema.visualizar_visitantes or perms.Sistema.visualizar_obreiros_mediuns %}
+                        <button type="button" id="btn-submenu_listar_assis" class="btn-submenudp btn-submenu btn-nav_menu" data-target="area-submenu_listar_assis">
+                            <img src="{% static 'Sistema/images/lista_assis.png' %}">
+                            Listar Assistidos
+                            <img src="{% static 'Sistema/images/mais.png' %}"></button>{% endif %}
+
+                        <div id="area-submenu_listar_assis">
+                             {% if perms.Sistema.visualizar_visitantes %}
+                            <button type="button" id="btn-menu_visitantes" class="btn-submenu2 btn-nav_menu"
+                            data-url="{% url 'lista-visitantes' %}">
+                                <img src="{% static 'Sistema/images/visitante.png' %}" class="icon-menu">
+                                Visitantes</button>{% endif %}
+
+                            {% if perms.Sistema.visualizar_obreiros_mediuns %}
+                            <button type="button" id="btn-menu_obreiros_mediuns" class="btn-submenu2 btn-nav_menu"
+                            data-url="{% url 'cadastrar-assistido' %}">
+                                <img src="{% static 'Sistema/images/obreiros_mediuns.png' %}" class="icon-menu">
+                                Obreiros/Médiuns</button>{% endif %}
+                        </div>
+                    </div>
+
+
+                    {% if perms.Sistema.acesso_assistencia %}
+                    <button type="button" class="btn-menu btn-nav_menu" id="btn-menu_assistencia">
+                        Assistência
+                        <img src="{% static 'Sistema/images/mais.png' %}"></button>
+                    {% endif %}
+
+                    <div id="area-submenu_assistencia" class="area-submenu">
+
+                        {% if perms.Sistema.entregar_cesta_basica %}
+                        <button type="button" id="btn-menu_entregar_cestas" class="btn-nav_menu btn-submenu"
+                        data-url="{% url 'entrega-cesta' %}">
+                            <img src="{% static 'Sistema/images/entrega.png' %}" class="icon-menu">
+                            Entregar Cestas</button>{% endif %}
+
+                        {% if perms.Sistema.gerar_senhas_lote %}
+                        <button type="button" id="btn-menu_gerador_senhas" class="btn-nav_menu btn-submenu"
+                        data-url="{% url 'gerador-senhas' %}">
+                            <img src="{% static '/images/senhas.png' %}" class="icon-menu">
+                            Gerador de Senhas</button>{% endif %}
+                        
+                        {% if perms.Sistema.visualizar_gestao_doc %}
+                        <button type="button" id="btn-menu_gerador_senhas" class="btn-nav_menu btn-submenu"
+                        data-url="{% url 'gestao-doc' %}">
+                            <img src="{% static '/images/documentos.png' %}" class="icon-menu">
+                            Gestão de Documentos</button>{% endif %}
+                    </div>
+
+                    <!--Canvas-->
+                    {% if perms.Sistema.acesso_suprimentos %}
+                    <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                        data-url="{% url 'gerenciador_canvas' %}">
+                            Canvas</button>{% endif %}
+
+                    <!--Suprimentos-->
+                    {% if perms.Sistema.acesso_suprimentos %}
+                    <button type="button" class="btn-menu btn-nav_menu" id="btn-menu_suprimentos">
+                        Suprimentos
+                        <img src="{% static 'Sistema/images/mais.png' %}"></button> {% endif %}
+
+                        <div id="area-submenu_suprimentos" class="area-submenu">
+
+                            {% if perms.Sistema.consultar_estoque %}
+                            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                                data-url="{% url 'requisicao_materiais' %}">
+                                    <img src="{% static '/images/solicitar_suprimentos.png' %}" class="icon-menu">
+                                    Requisitar Materiais</button>{% endif %}
+
+                            {% if perms.Sistema.consultar_estoque %}
+                            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                                data-url="{% url 'consultar_estoque' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Consultar Estoque</button>{% endif %}
+
+                            {% if perms.Sistema.registrar_entrada %}
+                            <button type="button" id="btn-submenu_mov_estq" class="btn-submenudp btn-nav_menu" data-target="area-submenu_mov_estoque">
+                                <img src="{% static 'Sistema/images/novo_assistido.png' %}">
+                                Movimentação de Estoque
+                                <img src="{% static 'Sistema/images/mais.png' %}"></button>{% endif %}
+
+                            <div id="area-submenu_mov_estoque">
+                                {% if perms.Sistema.registrar_entrada %}
+                                <button type="button" id="btn-submenu_nova_entrada" class="btn-submenu2 btn-nav_menu"
+                                data-url="{% url 'nova-entrada-supri' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Nova Entrada</button>{% endif %}
+
+                                {% if perms.Sistema.registrar_saida %}
+                                <button type="button" id="btn-submenu_nova_entrada" class="btn-submenu2 btn-nav_menu"
+                                data-url="{% url 'autorizar-solicitacao-rm' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Autorizar Solicitações</button>{% endif %}
+                            </div>
+
+                            {% if perms.Sistema.listar_itens_almoxarifado %}
+                            <button type="button" id="btn-submenu_gerenciar_itens" class="btn-submenu btn-nav_menu"
+                                data-url="{% url 'listar-itens' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Listar Ítens</button>{% endif %}
+
+                            {% if perms.Sistema.ver_historico_movimentacao %}
+                            <button type="button" id="btn-submenu_mov_estq" class="btn-submenu btn-nav_menu"
+                                data-url="{% url 'listar-itens' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Histórico de Movimentação</button>{% endif %}
+
+                            {% if perms.Sistema.ver_relatorios_indicadores %}
+                            <button type="button" id="btn-submenu_mov_estq" class="btn-submenu btn-nav_menu"
+                                data-url="{% url 'listar-itens' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Relatórios & Indicadores</button>{% endif %}
+                                    
+                            <!--Área botões da Gerência-->
+                            {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                            <button type="button" id="btn-submenu_mov_estq" class="btn-submenudp btn-nav_menu" data-target="area-submenu_gerencia_estoque">
+                                Gerência
+                                <img src="{% static 'Sistema/images/mais.png' %}" >
+                                </button>{% endif %}
+
+                            <div id="area-submenu_gerencia_estoque">
+                                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                                <button type="button" id="btn-submenu_cad_categorias" class="btn-submenu2 btn-nav_menu"
+                                data-url="{% url 'cad_categorias_itens' %}">
+                                    <img src="{% static 'Sistema/images/novo_assistido.png' %}" class="icon-menu">
+                                    Categorias</button>{% endif %}
+
+                                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                                <button type="button" id="btn-submenu_cad_fornecedores" class="btn-submenu2 btn-nav_menu"
+                                data-url="{% url 'cad_marcas_itens' %}">
+                                    <img src="{% static 'Sistema/images/mais.png' %}" class="icon-menu">
+                                    Marcas </button>{% endif %}
+
+                                {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+                                <button type="button" id="btn-submenu_cad_fornecedores" class="btn-submenu2 btn-nav_menu"
+                                data-url="{% url 'cad_fornecedor_itens' %}">
+                                    <img src="{% static '/images/fornecedores.png' %}" class="icon-menu">
+                                    Fornecedores</button>{% endif %}
+                            </div>
+                        </div>
+                </div>
+                
+                {% if perms.Sistema.gerar_senhas_lote %}
+                <div id="area-dropdown_mdl_gerencia" class="area-dropdown-mdl">
+                    <select id="btn-mdl_atf" class='btn-mdl select-padrao' onchange="location = this.value">
+                        <option value="{% url 'home' %}">ATF</option>
+                        <option value="{% url 'dashboard-atf' %}">Dashboard</option>
+                        <option value="{% url 'historico-atf' %}">Histórico ATF</option>
+                        <option value="{% url 'atf-arquivo' %}">Prontuários</option>                
+                        <option value="{% url 'atf-gerenciamento' %}">Gerenciar ATF</option>                
+                    </select>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div id="menu-area_info">
+                <p>Versão atual: 5.16.17</p>
+            </div>
+        </div>
+        {% endblock %}
+
+        <div id="area-exibicao">
+            {% block  area-exibicao %}
+            {%endblock  %}
+        </div>
+    </div>
+
+<!-- Área de Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/script_global.js' %}"></script>
+<script src="{% static 'js/script_msg_notificacoes.js' %}"></script>
+<script src="{% static 'js/scripts_header.js' %}"></script>
+<script src="{% static 'js/scripts_menu.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+{% block js %}
+{% endblock %}
+</body>
+</html>

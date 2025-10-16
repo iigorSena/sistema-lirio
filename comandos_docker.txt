@@ -1,0 +1,11 @@
+#Subir o container com imagem
+docker-compose -f docker/docker-compose.yml up --build
+
+#Prefixo docke
+docker exec -it docker-app-1 /venv/bin/python manage.p
+
+#Criar Migração
+docker exec -it docker-app-1 /venv/bin/python manage.py makemigrations
+
+#Aplicar Migração
+docker exec -it docker-app-1 /venv/bin/python manage.py migrate

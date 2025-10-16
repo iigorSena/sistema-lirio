@@ -1,0 +1,102 @@
+{% extends 'Sistema/modelo.html' %}
+{% load static %}
+
+{% block area-conexao %}
+<link rel="stylesheet" href="{% static 'ATF/css/style_arquivo_atf.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Prontuário | Lírio</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+
+<h2 class="title-pag">Área de Pronuários</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<div id="area-form_upload_prt">
+    <form method="POST" enctype="multipart/form-data" id="form-upload_prt">
+        {% csrf_token %}
+        
+        <div id="area-title_enviar_arquivos">
+            <h2>Enviar Prontuários</h2>
+        </div>
+        
+        <div class="area-ind_upload_prt" id="area-ano_upload_prt">
+            <label class="label-upload_prt">Ano</label>
+            {{ formview.ano }}
+        </div>
+        
+        <div class="area-ind_upload_prt" id="area-img_upload_prt">
+            <label class="label-upload_prt">Enviar Arquivo</label>
+            <input type="file" name="imagem" multiple>
+            
+        </div>
+        
+        <button type="submit" id="btn-upload_prt" class="btn-padrao">Enviar Arquivo</button>
+        
+        <div id="area-carregamento_upload_prt">
+        </div>
+    </form>
+</div>
+
+<!-- Área de Visualizção de Prontuários -->
+<div id="area-visualizacao_prt">
+    <h2>Área de visualização</h2>
+
+    <div id="area-busca_prt">
+        <input id="input-busca_prt" type="search" name="busca_prt" value="{{ busca }}" placeholder="Busque pelo nome">
+        
+        <select id="select-ano_visu" name="ano">
+            {% for value, label in formview.fields.ano.choices %}
+                <option value="{{ value }}" {% if value == formview.initial.ano %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+
+        <div id="area-check_todos_anos">
+            <input type="checkbox" id="check-todos_anos">
+            <label id="label-todos_anos">Todos<br>os anos</label>
+        </div>
+        <button id="btn-pesquisar-tb-prt" class="btn-padrao">
+            <img src="{% static 'images/lupa.png' %}" alt="Editar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+            Buscar
+        </button>
+    </div>
+
+    <div id="area-tb_visualizacao_prt">
+        <table id="tb-visualizacao_prt">
+        <thead>
+            <tr>
+                <th >ID</th>
+                <th >Nome</th>
+                <th >Ano</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-prontuarios">
+            {% for arquivo in arquivos %}
+            <tr>
+                <td id="cln-id_tb_visu_prt">{{ arquivo.id }}</td>
+                <td id="cln-nome_tb_visu_prt">
+                    <a href="#" class="link-img-prt" data-img-url="{% static arquivo.imagem %}">
+                        {{ arquivo.nome }}
+                    </a>
+                </td>
+                <td id="cln-ano_tb_visu_prt">{{ arquivo.ano }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">Sem prontuarios para exibir.</td></tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+    
+    <div id="popup-img_prt">
+    </div>
+</div>
+
+{%endblock  %}
+
+{% block js %}
+<script src="{% static 'js/mecanismos_prontuarios.js' %}"></script>
+{% endblock %}

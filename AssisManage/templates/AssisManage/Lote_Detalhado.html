@@ -1,0 +1,115 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_lote_detalhado.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}
+<title>Lote | CEJA</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Lote {{ lote.nome_lote }}</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id="main-lote_detalhado">
+    <div id="area-detalhes_lote_detalhado">
+        <form id="area-info_lote_detalhado">
+            {% csrf_token %}
+            <input type="text" name="nome_lote" class="status-select status-{{ form.instance.status|lower }}" id="input-nome_lote_lote_detalhado" value="{{ lote.nome_lote }}" disabled>
+            <select id="input-select_lote_lote_detalhado" name="status" data-status="{{ form.instance.status|lower }}" class="status-select" disabled>
+                {% for valor, label in form.fields.status.choices %}
+                    <option value="{{ valor }}" {% if form.instance.status == valor %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="button" class="btns-area_nome_lote_detalhado" id="btn-edit_nome_lote">
+                <img src="{% static 'images/lapis-amarelo.png' %}">
+            </button>
+            <button type="submit" class="btns-area_nome_lote_detalhado" id="btn-salvar_nome_lote" disabled style="display: none">
+                <img src="{% static 'images/confirmar.png' %}">
+            </button>
+            <button type="button" class="btns-area_nome_lote_detalhado" id="btn-cancelar_nome_lote" disabled style="display: none">
+                <img src="{% static 'images/cancelar.png' %}">
+            </button>
+        </form>
+        <div id="area-tipo_assis_lote_detalhado">
+            <label>Tipo de Assistência:</label>
+            <input type="text" id="input-tipo_assis_lote_detalhado" value="{{ lote.tipo_assistencia }}" disabled>
+        </div>
+        <form id="area-busca_lote_detalhado">
+            <input type="search" id="input-busca_lote_detalhado" placeholder="ID ou nome do assistido">
+            <button type="button" class="btn-padrao" id="btn-buscar_lote_detalhado" >
+                <img src="{% static 'images/lupa.png' %}" style="height: 15px">
+                Buscar</buscar>
+        </form>
+        <button type="button" id="btn-abrir_popup_add_senhas" class="btn-padrao">
+            <img src="{% static 'images/mais.png' %}">
+        </button>
+    </div>
+
+
+    <table id="tb-lista_senhas_lote" class="table">
+        <thead>
+            <tr>
+                <th id="cbl-id_lista_senhas_lote">ID</th>
+                <th id="cbl-assis_lista_senhas_lote">Assistido</th>
+                <th id="cbl-senha_lista_senhas_lote">Senha</th>
+                <th id="cbl-status_lista_senhas_lote">Status</th>
+                <th id="cbl-dataemissao_lista_senhas_lote">Data de emissão</th>
+                <th id="cbl-datavalidacao_lista_senhas_lote">Data de validação</th>
+                <th id="cbl-acao_lista_senhas_lote">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for senha in senhas_lote %}
+            <tr id="linha-tb_senhas_lote_view_{{ senha.id}}">
+                <td class="cln-tb_senhas_lote_view">{{ senha.assistido.id }}</td>
+                <td>{{ senha.assistido }}</td>
+                <td class="cln-tb_senhas_lote_view" id="cln-senhas_lista_senhas_lote">
+                    {{ senha.senha|stringformat:"03d" }}</td>
+                <td class="cln-tb_senhas_lote_view">{{ senha.status }}</td>
+                <td class="cln-tb_senhas_lote_view">{{ senha.data_entrega|date:"d/m/Y" }}</td>
+                <td class="cln-tb_senhas_lote_view">{{ senha.data_entrega_confi|date:"d/m/Y" }}</td>
+                <td class="cln-tb_senhas_lote_view" id="cln-acao_lista_senhas_lote{{ senha.id}}">
+                    <button type="button" class="btn-excluir_senha{{senha.id}} btn-excluir" data-id="{{ senha.id }}">
+                        <img src="{% static 'images/lixeira-branca.png' %}">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8">Nenhuma senha cadastrada ainda:(</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+<!-- Modal Adicionar Senha -->
+<div id="modalAddSenha" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-popup">Adicionar Nova Senha</h2>
+        <hr id="linha-title_atendimento" class="linha-title">
+        <form id="formAddSenha">
+            {% csrf_token %}
+            <label for="id_assistido">Assistido</label>
+            <select id="id_assistido" name="assistido" class="select-padrao form-control select2">
+                {% for assistido in add_senha_form.fields.assistido.queryset %}
+                    <option value="{{ assistido.id }}" >{{ assistido.id }} - {{ assistido.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-padrao" id="btn-add_senha_lote_detalhado">Salvar</button>
+        </form>
+    </div>
+</div>
+
+{% block js %}
+    <script src="{% static 'js/ControlesLoteDetalhado.js' %}"></script>
+    <script> const urlLoteDetalhado = "{% url 'lote-detalhado' lote.id %}"; </script>
+{% endblock %}
+
+{% endblock %}

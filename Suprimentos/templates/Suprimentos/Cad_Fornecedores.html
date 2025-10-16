@@ -1,0 +1,82 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_cad_fornecedores_itens.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Cadastro de Fornecedores</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-cad_fornecedores_supri'>
+    <form id="area-cad_fornecedores_supri" class="form-padrao">
+    {% csrf_token %}
+        <!-- Nome -->
+        <input type="text" class="input-padrao" name="nome" id="input-cad_nome_fornecedor_itens" placeholder="Nome do fornecedor" required>
+
+        <!-- CNPJ -->
+        <input type="text" class="input-padrao" name="cnpj" id="input-cad_cnpj_fornecedor_itens" placeholder="CNPJ" maxlength="14" required>
+
+        <!-- Telefones -->
+        <input type="text" class="input-padrao" name="telefone1" id="input-tel1_nome_fornecedor_itens" placeholder="Telefone 1">
+        <input type="text" class="input-padrao" name="telefone2" id="input-tel2_nome_fornecedor_itens" placeholder="Telefone 2">
+
+        <!-- E-mail -->
+        <input type="email" class="input-padrao" name="email" id="input-cad_email_fornecedor_itens" placeholder="E-mail">
+
+        <!-- Endereço -->
+        <input type="text" class="input-padrao" name="cep" id="input-cad_cep_fornecedor_itens" placeholder="CEP" maxlength="8">
+        <input type="text" class="input-padrao" name="uf" id="input-cad_uf_fornecedor_itens" placeholder="UF">
+        <input type="text" class="input-padrao" name="localidade" id="input-cad_localidade_fornecedor_itens" placeholder="Cidade">
+        <input type="text" class="input-padrao" name="bairro" id="input-cad_bairro_fornecedor_itens" placeholder="Bairro">
+        <input type="text" class="input-padrao" name="logradouro" id="input-cad_lograd_fornecedor_itens" placeholder="Logradouro">
+        <input type="text" class="input-padrao" name="numero" id="input-cad_numero_fornecedor_itens" placeholder="Número">
+
+        <!-- Observação -->
+        <textarea type="text" class="input-padrao" name="observacao" id="input-cad_obs_fornecedor_itens" placeholder="Observação"></textarea>
+
+        <!-- Botão -->
+         <div id="area-btn_cad_fornecedor">
+            <button type="submit" class="btn-padrao">
+                <img src="{% static 'images/mais.png' %}">
+                Cadastrar
+            </button>
+        </div>
+    </form>
+
+
+    <div id="area-visu_fornecedor_itens">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fornecedor</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fornecedor in fornecedores %}
+                <tr>
+                    <td class="cln-text_padrao">{{ fornecedor.id }}</td>
+                    <td class="cln-nome_padrao">{{ fornecedor.nome }}</td>
+                    <td class="cln-text_padrao">{{ fornecedor.status }}</td>
+                    <td class="cln-elementos_padrao">
+                        <img src="{% static 'images/lapis-amarelo.png' %}" class="btn-img_acao_lista_fornecedor">
+                        <img src="{% static 'images/confirmar.png' %}" class="btn-img_acao_lista_marca" style="display: none">
+                        <img src="{% static 'images/cancelar.png' %}" class="btn-img_acao_lista_marca"style="display: none">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</main>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ControlesCadFornecedorItem.js' %}"></script>
+    <script> const urlCadFornecedorItem = "{% url 'cad_fornecedor_itens' %}";</script>
+{% endblock %}

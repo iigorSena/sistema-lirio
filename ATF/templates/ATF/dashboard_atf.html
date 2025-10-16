@@ -1,0 +1,120 @@
+{% extends 'Sistema/modelo.html' %}
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'ATF/css/style_dashboard_atf.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>Dashboard ATF | Lírio</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+    <h2 class="title-pag">Dashboard ATF</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+    <div id="area-dashboard_atf">
+        <div id="area-filtros_dash_atf">
+            <h3 class="subtitle">Filtros</h3>
+            <hr id="linha-title_atendimento" class="linha-subtitle">
+
+            <form method="get" id="form-filtros_dash_atf">
+                <div class="filtro-dash_atf">
+                    <label>Data início:</label>
+                    <input type="date" name="data_inicio" value="{{ data_inicio }}" id="filtro-data_inicio_dash_atf">
+                </div>
+                <div class="filtro-dash_atf">
+                    <label>Data fim: </label>
+                    <input type="date" name="data_fim" value="{{ data_fim }}" id="filtro-data_fim_dash_atf">
+                </div>
+                <div class="filtro-dash_atf">
+                    <label><input type="checkbox" id="chk7dias"> Últimos 7 dias</label>
+                    <label><input type="checkbox" id="chk15dias"> Últimos 15 dias</label>
+                </div>
+
+                <div class="filtro-dash_atf" style="margin-top: 15px">
+                    <label for="facilitador">Facilitador:</label>
+                    <select name="facilitador" id="filtro-facilitador_dash_atf">
+                        <option value="">Todos</option>
+                        {% for f in facilitadores_disponiveis %}
+                            <option value="{{ f.id }}" {% if f.id|stringformat:"s" == request.GET.facilitador %}selected{% endif %}>
+                                {{ f.facilitador }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <button class="btn-padrao" type="submit">Filtrar</button>
+            </form>
+        </div>
+        
+        <div id="area-resultados_dash_atf">
+            <div id="area-indicadores_dash_atf">
+                <div class="area-indicador_ind_dash_atf">
+                    <p class="indicador-dash_atf">Total no Período: </p>
+                    <p class="indicador-valor_dash_atf"> {{ total_geral }}</p>
+                </div>
+                <div class="area-indicador_ind_dash_atf">
+                    <p class="indicador-dash_atf">Total 1° Vez: </p>
+                    <p class="indicador-valor_dash_atf"> {{ total_1_vez }}</p>
+                </div>
+                <div class="area-indicador_ind_dash_atf">
+                    <p class="indicador-dash_atf">Total Retornos: </p>
+                    <p class="indicador-valor_dash_atf"> {{ total_retorno }}</p>
+                </div>
+                <div class="area-indicador_ind_dash_atf">
+                    <p class="indicador-dash_atf">Média: </p>
+                    <p class="indicador-valor_dash_atf"> {{ media_atendimentos }}</p>
+                </div>
+            </div>
+            
+            <div id="area-graficos_dash_atf">
+                <div id="area-leg_grafico">
+                    <span class="subarea-leg_grafico">
+                        <span style="display: inline-block; width: 30px; height: 12px; background-color: #36b6ff; margin-right: 5px;"></span>
+                        <span style="color: white;">1ª vez</span>
+                    </span>
+                    <span class="subarea-leg_grafico">
+                        <span style="display: inline-block; width: 30px; height: 12px; background-color: #00ff0d; margin-right: 5px;"></span>
+                        <span style="color: white;">Retorno</span>
+                    </span>
+                </div>
+
+                <div id="area-grafico_barraunica_dash_atf" class="area-grafico_dash_atf">
+                    <span class="subarea-leg_grafico">Total</span>
+                    <canvas id="grafico-barraunica_facili"></canvas>
+                </div>
+
+                <div id="area-grafico_barras_dash_atf" class="area-grafico_dash_atf"> 
+                    <span class="subarea-leg_grafico">Quantidade Individual</span>                   
+                    <canvas id="grafico-barras_facili"></canvas>
+                </div>
+
+                <div id="area-grafico_pizza_dash_atf" class="area-grafico_dash_atf">
+                    <span class="subarea-leg_grafico">Porcentagem Total</span>
+                    <canvas id="grafico-pizza_facili"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+    <script>
+         const totalBarraUnica1Vez = {{ total_1_vez }};
+        const totalBarraUnicaRetorno = {{ total_retorno }};
+
+        const labelsFacilitadores = {{ labels_facilitadores|safe }};
+        const valores1Vez = {{ valores_1_vez|safe }};
+        const valoresRetorno = {{ valores_retorno|safe }};
+
+        const totalPizzaLabels = ['1ª vez', 'Retorno'];
+        const totalPizzaValores = [{{ total_1_vez }}, {{ total_retorno }}];
+    </script>
+
+    <script src="{% static 'js/mecanismos_dashboard_atf.js' %}"></script>
+{% endblock %}

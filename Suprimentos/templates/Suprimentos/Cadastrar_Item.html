@@ -1,0 +1,71 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_cad_item.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+    <h2 class="title-pag">Cadastrar Ítens</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-cad_supri'>
+    <form method="post" id="form-cad_item" >
+        {% csrf_token %}
+        <span id="area-campos_form_cad_item">
+            <div class="campos-form_cad_item" >
+                <label for="id_nome">Nome</label>
+                <input type="text" id="input-nome_form_cad_item" class="input-form_cad_item input-padrao" name="nome" value="{{ CadItem.instance.nome | default:'' }}" maxlength="80" Required>
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-undmedida_form_cad_item">
+                <label for="id_categoria">Und de medida</label>
+                {{ CadItem.unidade_medida }}
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-descricao_form_cad_item">
+                <label for="id_descricao">Descrição</label>
+                <textarea id="input-descricao_form_cad_item" class="input-form_cad_item input-padrao" name="descricao" maxlength="250">{{ CadItem.instance.descricao|default_if_none:'' }}</textarea>
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-categoria_form_cad_item">
+                <label for="id_categoria">Categoria</label>
+                {{ CadItem.categoria }}
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-estqmin_form_cad_item">
+                <label for="id_estoque_minimo">Estoque mínimo</label>
+                <input type="number" id="input-estqmin_form_cad_item" class="input-form_cad_item input-padrao" name="estoque_minimo" value="{{ CadItem.instance.estoque_minimo | default:'' }}" Required>
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-estqmax_form_cad_item">
+                <label for="id_estoque_maximo">Estoque máximo</label>
+                <input type="number" id="input-estqmax_form_cad_item" class="input-form_cad_item input-padrao" name="estoque_maximo" value="{{ CadItem.instance.estoque_maximo | default:'' }}" Required>
+            </div>
+
+            <div class="campos-form_cad_item" id="campo-status_form_cad_item">
+                <label>Status</label>
+                {{ CadItem.status }}
+            </div>
+
+        </span>
+        <div id="area-btns_cad_itens">
+            <button type="button" class="btn-voltar" id="btn-voltar_lista_itens" data-url="{% url 'listar-itens' %}">
+                <img src="{% static 'images/voltar.png' %}">
+                Voltar
+            </button>
+            <button type="submit" class="btn-padrao" id="btn-cad_novo_item">
+                <img src="{% static 'images/mais.png' %}">
+                Cadastrar</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
+        
+{% block js %}
+    <script src="{% static 'js/ControlesCaditens.js' %}"></script>
+    <script> const urlCadastrarItem = "{% url 'cadastrar-item' %}";</script>
+{% endblock %}

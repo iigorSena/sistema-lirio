@@ -1,0 +1,93 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_ficha_solicitacao_rm.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Autorizar Solicitações</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-aut_ficha_solicitacoes_rm'>
+    <div id="area-dadossol_ficha_solic_rm">
+        <div id="dados-nrm_rm_aprovacao" class="campos-rm_aprovaccao">
+            <label class="label">RM</label>
+            {{ Drm.Nrm.rm }}
+        </div>
+
+        <div id="dados-solic_rm_aprovacao" class="campos-rm_aprovaccao">
+            <label class="label">Requisitante</label>
+            {{ Drm.Nrm.solicitante }}
+        </div>
+
+        <div id="dados-datasol_rm_aprovacao" class="campos-rm_aprovaccao">
+            <label class="label">Data da Solicitação</label>
+            {{ Drm.Nrm.data_solic|date:"d/m/Y - H:i" }}
+        </div>
+        
+        <div id="dados-status_rm_aprovacao" class="campos-rm_aprovaccao"{% if Drm.status == "Autorizado" %}disabled{% endif %}>
+            <label class="label">Status</label>
+            {{ Drm.status }}
+            <input type="hidden" id="input-status_rm" value="{{ Drm.status }}">
+        </div>
+
+        <div id="dados-dataApr_rm_aprovacao" class="campos-rm_aprovaccao">
+            <label class="label">Data da Autorização</label>
+            {{ Drm.data_autor|date:"d/m/Y - H:i"|default:"---" }}
+        </div>
+
+        <div id="dados-autor_rm_aprovacao" class="campos-rm_aprovaccao">
+            <label class="label">Autorizador</label>
+            {{ Drm.autorizador|default:"---" }}
+        </div>
+
+    </div>
+
+    <form id="form-itens_rm_aprovacao" method="post" data-id="{{ Drm.id }}">
+        {% csrf_token %}
+        <table id="tb-itens_rm_aprovacao">
+            <thead>
+                <tr>
+                    <th id="cab-material-aprov_liberar_rm">Material</th>
+                    <th id="cab-quant-sol_liberar_rm">Quant. solicitada</th>
+                    <th id="cab-quant-aprov_liberar_rm">Quant. a liberar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itensrm %}
+                <tr>
+                    <td style="padding-left: 5px">{{ item.material }}</td>
+                    <td id="td-quant_solicitada_rm">{{ item.quant_solicitada }}</td>
+                    <td id="td-input_quant_liberada_rm">
+                        <input type="number"
+                            class="input-quant_liberada_rm"
+                            id="input-quant_liberada_rm"
+                            name="quant_liberada_{{ item.id }}"
+                            value="{{ item.quant_liberada|default:item.quant_solicitada }}">
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3">Nenhum item encontrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div id="area-btn_liberar_rm">
+            <select id="select-status_rm" name="status_rm">
+                <option value="none">---</option>
+                <option value="Autorizado" {% if Drm.status == "Autorizado" %}selected{% endif %}>Autorizar</option>
+                <option value="Negado" {% if Drm.status == "Negado" %}selected{% endif %}>Negar</option>
+            </select>
+            <button type="submit" id="btn-liberar_rm" class="btn-padrao">
+                <img src="{% static "images/confirmar-branco.png" %}">
+                Confirmar</button>
+        </div>
+    </form>
+</main>
+    
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/ControlesFichaRM.js' %}"></script>
+{% endblock %}

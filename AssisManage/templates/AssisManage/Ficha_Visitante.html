@@ -1,0 +1,247 @@
+{% load static %}
+{% load custom_filters  %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_fichaassistidos.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Ficha {{ Fassistido.name }} | CEJA</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+
+
+    <h2 class="title-pag">Ficha Assistencial</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+    <main id="main-ficha_assistencial">
+
+        <form id="ficha-assistido-form" method="post" data-id="{{ Fassistido.id }}">
+            {% csrf_token %}
+
+            <div id="fieldset-grupo-form">
+                
+                <div id="form-bloco1"  class="bloco">
+                    <div class="form-group" id="area-input-nome">
+                        <label for="nome" class="label-form">Nome Completo:</label>
+                        <input type="text" id="nome" class="input-form input-padrao" name="name" value="{{ Fassistido.name |default:'Não Informado' }}" disabled>
+                    </div>
+                    
+                    <div class="form-group" id="area-input-id">
+                        <label for="input-id" class="label-form">ID:</label>
+                        <input type="text" id="input-id" name="id" value="{{ Fassistido.id }}" disabled>
+                    </div>
+                </div>
+
+                <div id="form-bloco2" class="bloco">
+
+                    <div class="form-group" id="area-input-tel">
+                        <label for="input-tel" name="telefone" class="label-form">Contato:</label>
+                        <input type="text" id="input-tel" class="input-form input-padrao" name="telefone" value="{{ Fassistido.telefone | format_phone |default:'Não informado' }}" maxlength="15" disabled>
+                    </div>
+
+                    <div class="form-group" id="area-input-tel2">
+                        <label for="input-tel2" name="seg_telefone" class="label-form">Seg. Contato:</label>
+                        <input type="text" id="input-tel2" class="input-form input-padrao" name="seg_telefone" value="{{ Fassistido.seg_telefone | format_phone |default:'Não informado' }}" maxlength="15" disabled>
+                    </div>
+
+                    <div class="form-group" id="area-input-cpf">
+                        <label for="cpf" class="label-form">CPF:</label>
+                        <input type="text" id="input-cpf" class="input-form input-padrao" name="cpf" value="{{ Fassistido.cpf | format_cpf |default:'Não informado' }}" maxlength="14" disabled>
+                    </div>
+                    <div class="form-group" id="area-input-datanasci">
+                        <label for="input-cpf" class="label-form">Data de Nasc.:</label>
+                        <input type="date" id="input-data_nascimento" class="input-form"  name="data_nasci" value="{{ Fassistido.data_nasci | date:"Y-m-d" }}" maxlength="10" disabled>
+                    </div>
+                </div>
+                
+                <div id="form-bloco3"  class="bloco">
+
+                    <div class="form-group" id="area-input-nomemae">
+                        <label for="nome_mae" class="label-form">Nome da Mãe:</label>
+                        <input type="text" id="nome_mae" class="input-form input-padrao" name="nome_mae" value="{{ Fassistido.nome_mae |default:'Não informado'}}" disabled>
+                    </div>
+                    <div class="form-group" id="area-input-cep">
+                        <label for="cep" class="label-form">CEP:</label>
+                        <input type="text" id="cep" class="input-form input-padrao" name="cep" value="{{ Fassistido.cep | format_cep |default:'Não informado'}}" disabled>
+                    </div>
+                    <div class="form-group" id="area-input-cidade">
+                        <label for="cidade"  class="label-form">Cidade:</label>
+                        <input type="text" id="cidade" class="input-form input-padrao" name="cidade" value="{{ Fassistido.cidade |default:'Não informado'}}" disabled>
+                    </div>
+                    <div class="form-group" id="area-input-bairro">
+                        <label for="bairro" class="label-form">Bairro:</label>
+                        <input type="text" id="bairro" class="input-form input-padrao" name="bairro" value="{{ Fassistido.bairro |default:'Não informado'}}" disabled>
+                    </div>
+                    <div class="form-group" id="area-input-logradouro">
+                        <label for="logradouro" class="label-form">Logradouro:</label>
+                        <input type="text" id="logradouro" class="input-form input-padrao" name="logradouro" value="{{ Fassistido.logradouro |default:'Não informado'}}" disabled>
+                    </div>
+
+                    <div class="form-group" id="area-input-numero">
+                        <label for="input-numero" class="label-form">N°:</label>
+                        <input type="number" id="input-numero" class="input-form input-padrao" name="numero" value="{{ Fassistido.numero |default:'0'}}" disabled>
+                    </div>
+
+                    <div class="form-group" id="area-input-vinculo">
+                        <label for="vinculo" class="label-form">Vínculo:</label>
+                        <select id="vinculo" name="vinculo" class="input-form select-padrao" disabled>
+                            <option value="">-- Selecione --</option>
+                            {% for vinc in vinculos %}
+                                <option value="{{ vinc.id }}" {% if Fassistido.vinculo_id == vinc.id %}selected{% endif %}>
+                                    {{ vinc.vinculo }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div id="area-tip_assistencia" class="form-group">
+                        <label>Tipo de Assistência:</label>
+                        <div class="checkbox-padrao input-padrao">
+                            {% for checkbox in form.tip_assistencia %}
+                            <div class="checkbox-item">
+                                {{ checkbox.tag }}
+                                <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="form-bloco4"  class="bloco">
+                    <div class="form-group" id="area-input-observaco">
+                        <label for="input-observacao" class="label-form">Observação:</label>
+                        <textarea id="input-observacao" class="input-form input-padrao" name="observacao" maxlength="200" disabled>{{ Fassistido.observacao |default:''}}</textarea>
+                    </div>
+                </div>
+
+                <div id="area-detalhes_ficha_assistido_form">
+                    <label>Registro criado em: </label>
+                    {{ Fassistido.data_cadastro|date:"d/m/Y" | default:"--/--/----" }}
+                    <label>Última alteração por: </label>
+                    {{ Fassistido.ultima_alteracao|default:"Nenhum usuário" }}
+                </div>
+            </div>
+
+            <!--- Área dos Botões -->
+            <div id="area-btns-form">
+                <div id="area-btn_voltar">
+                    <button type="button" id="btn-voltar-form" class="btns-form btn-voltar" data-url="{% url 'lista-visitantes' %}">
+                        <img src="{% static 'images/voltar.png' %}">
+                        Voltar
+                    </button>
+                </div>
+                
+                {% if pk_anterior %}
+                    <button type="button" class="btns-form btn-navegacao" id="btn-anterior-form"  data-url="{% url 'ficha-visitante' pk_anterior %}"> 
+                        <img src="{% static 'images/anterior.png' %}">
+                            Anterior
+                    </button></a>
+                {% else %}
+                    <button class="btns-form btn-navegacao" id="btn-anterior-form" disabled>
+                        <img src="{% static 'images/anterior.png' %}"> Anterior
+                    </button>
+                {% endif %}
+
+                <button type="button" id="btn-editar-form" class="btns-form btn-editar">
+                    <img src="{% static 'images/lapis-amarelo.png' %}">
+                        Editar
+                </button>
+
+                <button type="submit" id="btn-salvar-form" class="btns-form btn-salvar">
+                    <img src="{% static 'images/confirmar.png' %}">
+                        Salvar
+                </button>
+
+                <button type="button" id="btn-cancelar-form" class="btns-form btn-cancelar">
+                    <img src="{% static 'images/cancelar.png' %}">
+                        Cancelar
+                </button>
+
+                {% if pk_proxima %}
+                <button type="button" class="btns-form btn-navegacao" id="btn-seguinte-form" data-url="{% url 'ficha-visitante' pk_proxima %}">
+                    <img src="{% static 'images/avancar.png' %}">
+                        Seguinte
+                </button></a>
+                {% else %}
+                    <button class="btns-form btn-navegacao" id="btn-seguinte-form" disabled>
+                        <img src="{% static 'images/avancar.png' %}"> Seguinte
+                    </button>
+                {% endif %}
+            </div>
+        </form>
+
+        <div id="area-historicos_assis">
+            <!-- Área do Histórico de Assistências -->
+            <div id="are-hist_assis">
+                <h2 id="title-Historico" class="subtitle">Histórico Assistêncial</h2>
+                <hr>
+            
+                <div id="tb-hist_assis">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Tipo de Assistência</th>
+                                <th>Local</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for Hassistido in Hassistido %}
+                                <tr>
+                                    <td>{{ Hassistido.data|date:"d/m/Y" }}</td>
+                                    <td>{{ Hassistido.tip_assistencia }}</td>
+                                    <td>{{ Hassistido.local }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="dados-none">Nenhum atendimento registrado.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Área do Histórico -->
+            <div id="area-hist-senhas">
+                <div id="barra-hist_senhas">
+                    <h2 class="subtitle">Histórico de Senhas</h2>
+                </div>
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Senha</th>
+                            <th>Tipo de Assistência</th>
+                            <th>Data Entrega</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Hsenhas in Hsenhas %}
+                            <tr>
+                                <td>{{ Hsenhas.senha }}</td>
+                                <td>{{ Hsenhas.lote_origem.tipo_assistencia }}</td>
+                                <td>{{ Hsenhas.data_entrega|date:"d/m/Y" }}</td>
+                                <td>{{ Hsenhas.status }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="dados-none">Nenhum atendimento registrado.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+<div id="area-data_url" data-url-editar="{% url 'ficha-visitante' 0 %}"></div>
+
+{% block js %}
+<script src="{% static 'js/ControlesFichaAssistido.js' %}"></script>
+{% endblock %}
+    
+{% endblock %}

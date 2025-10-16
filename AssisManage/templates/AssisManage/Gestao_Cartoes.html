@@ -1,0 +1,50 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_gestao_documentos.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Gestão de Cartões | CEJA</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Gestão de Documentos</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id="main-gestao-doc">
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th class="cab-lote_gerar_pdf">Nome do Lote</th>
+                <th class="cab-lote_gerar_pdf">Tipo de Assistência</th>
+                <th class="cab-lote_gerar_pdf">Data do Evento</th>
+                <th class="cab-lote_gerar_pdf">Senhas Válidas</th>
+                <th class="cab-lote_gerar_pdf">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lote in lotes %}
+            <tr>
+                <td class="cln-lote_gerar_pdf">{{ lote.nome_lote }}</td>
+                <td class="cln-lote_gerar_pdf">{{ lote.tipo_assistencia }}</td>
+                <td class="cln-lote_gerar_pdf">{{ lote.data_evento|date:"d/m/Y" }}</td>
+                <td class="cln-lote_gerar_pdf">{{ lote.senhas_validas }}</td>
+                <td class="cln-lote_gerar_pdf" id="cln-acao_lote_gerar_pdf">
+                    <a href="{% url 'gerar_cartoes' lote.id %}" class="btn-primary" target="_blank">
+                        <button type="button" class="btn-visualizar">Gerar Arquivo</button>
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="5">Nenhum lote encontrado.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% block js %}
+    <script src="{% static 'js/ControlesGestaoDocumentos.js' %}"></script>
+    <script> const urlListaAssistidos = "{% url 'gestao-doc' %}"; </script>
+{% endblock %}
+
+{% endblock %}

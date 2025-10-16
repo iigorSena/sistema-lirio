@@ -1,2 +1,22 @@
-anotacoes.txt
-.venv
+# Ignorar o ambiente virtual
+.venv/
+.env/
+docker
+VenvWork
+
+#Ignorar banco sqlite
+.\db.sqlite3
+db.sqlite3
+
+# Ignorar arquivos de configurações sensíveis
+settings_homologacao.txt
+settings_producao.txt
+setup/__pycache__/
+
+# Ignorar Pycahe
+__pycache__/
+migrations/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

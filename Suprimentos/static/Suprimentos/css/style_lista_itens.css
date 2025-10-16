@@ -1,0 +1,128 @@
+#main-geren_supri{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#area-busca_tb_geren_supri{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#form-pesquisa_tb_geren_supri{
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+#input-busca_tb_geren_supri{
+    flex: 1;
+    margin-right: 10px;
+}
+
+#area-btn_cad_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items:baseline;
+    width: 30%;
+}
+#btn-cad_item_mobi{
+    display: none;
+}
+#area-info_tb_geren_supri{
+    width: 100%;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-block: 5px;
+}
+
+/* Tabela */
+
+#cab-id_tb_itens{
+    width: 5%;
+}
+#cln-id-tb-itens{
+    text-align: center;
+}
+#cab-nome_tb_itens{
+    width: 30%;
+}
+#cab-acao_tb_itens{
+    width: 10%;
+}
+#cab-descricao_tb_itens{
+    width: 50%;
+}
+#cab-acao_tb_itens{
+    width: 10%;
+}
+#cab-status_tb_itens{
+    width: 10%
+}
+#cln-status-tb-itens{
+    text-align: center;
+}
+
+@media (max-width: 950px){
+#main-geren_supri{
+    width: 100%;
+}
+#area-busca_tb_geren_supri{
+    justify-content: center;
+    align-items: center;
+}
+#form-pesquisa_tb_geren_supri{
+    flex-direction: column;
+}
+#input-busca_tb_geren_supri{
+    flex: 1;
+    margin-right: 0px;
+}
+#area-btn_cad_item{
+    width: auto;
+    height: 100%;
+    border-left: 1px solid #36B6FF;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#btn-cad_item{
+    display: none;
+}
+#btn-cad_item_mobi{
+    display: block;
+    height: 40px;
+}
+#btn-pesquisar_tb_geren_supri{
+    width: 100%;
+}
+#area-tb_geren_supri{
+    width: 100%;
+    overflow-x: auto;
+}
+table{
+    width: auto;
+    min-width: 600px;
+}
+#cab-id_tb_itens{
+    width: 8vw;
+}
+
+#cab-nome_tb_itens{
+    width: 12vw;
+}
+#cab-descricao_tb_itens{
+    width: 12vw;
+}
+#cab-status_tb_itens{
+    width: 12vw;
+}
+
+
+}

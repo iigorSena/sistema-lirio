@@ -1,0 +1,28 @@
+#main-editor_canvas{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 2px;
+}
+#menu-lateral_editor_canvas{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-right: 2px solid white;
+    background-color: #000068;
+}
+label{
+    color: white;
+    font-weight: bold;
+}
+#area-de_trabalho_canvas{
+    width: 70%;
+}
+#area-edicao_canvas{
+    width: 100%;
+    border: 2px solid #000068
+}

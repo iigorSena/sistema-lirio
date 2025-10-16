@@ -1,0 +1,33 @@
+#main-cad_categorias_supri{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Área de Cadastro das Categorias */
+#area-cad_categorias_itens{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+#input-cad_categ_itens{
+    flex: 1;
+}
+
+/* Área de exibição das Categorias */
+#area-visu_categorias_itens{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+table{
+    width: 100%;
+}
+.btn-img_acao_lista_categ{
+    height: 18px;
+    cursor: pointer;
+}

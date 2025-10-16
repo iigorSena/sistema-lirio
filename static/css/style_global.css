@@ -1,0 +1,402 @@
+body{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+    background-color: #051753;
+    overflow-y: auto;
+}
+label{
+    color: white;
+    font-weight: bold;
+}
+button{
+    cursor: pointer;
+    border: none;
+    padding-block: 5px;
+    border-radius: 5px;
+    padding-inline: 5px;
+    overflow: hidden;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+select{
+    cursor: pointer;
+    border-inline: none;
+    border-radius: 5px;
+    border-top: none;
+    outline: none;
+    font-weight: bold;
+    border-bottom: 4px solid gray;
+}
+input[type="date"] {
+    border-radius: 5px;
+    padding-block: 3px;
+    font-size: 13pt;
+    background-color: #d6e4f0;
+}
+input[type="date"]:disabled {
+    color: black;
+    background-color: #cbd5e3;
+}
+input, textarea{
+    border-inline: none;
+    border-top: none;
+    border-radius: 5px;
+    border-bottom: 4px solid gray;
+    padding-block: 5px;
+    outline: none;
+    font-weight: bold;
+}
+input:focus, textarea:focus, select:focus, input[type="date"]:focus{
+    color: black;
+    background-color: #ffffff;
+    border-bottom: 4px solid #00e1ff;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-inline: none;
+    border-bottom: 1px solid white;
+}
+thead{
+    position: sticky;
+    top: 1px;
+    box-shadow: 0px 0px 15px black;
+}
+th {
+    background-color: #f4f4f4;
+    text-align: center;
+    font-weight: bold;
+    padding-block: 5px;
+
+}
+body{
+    border-inline: none;
+    
+}
+th, td {
+    border: 1px solid #ccc;
+}
+td{
+    color: white;
+    padding-block: 10px;
+    border-inline: none;
+}
+tr{
+    border-inline: none;
+}
+tr:hover {
+    background-color: #0f2775;
+}
+p{
+    margin: 0px;
+}
+
+
+/* ====== Classes ====== */
+/* Cabeçalhos */
+.title-pag{
+    color: white;
+    font-weight: bold;
+    font-size: 20pt;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.linha-title{
+    width: 25vw;
+    background: linear-gradient(to right, transparent, #00e1ff, transparent);
+    margin-bottom: 30px;
+}
+.subtitle{
+    color: white;
+    font-weight: bold;
+    font-size: 15pt;
+    margin-bottom: 0px;
+}
+.linha-subtitle{
+    border: none;
+    height: 2px;
+    width: 15vw;
+    background-color: #36B6FF;
+    margin-bottom: 15px;
+}
+.span-info{
+    color: white;
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+
+/* Inputs */
+.input-padrao{
+    color: black;
+    font-size: 11pt;
+    background-color: #d6e4f0;
+}
+.select-padrao{
+    font-size: 12pt;
+    padding-block: 5px;
+    background-color: #d6e4f0;
+}
+.select-padrao:disabled{
+    font-size: 12pt;
+    color: black;
+    background-color: #ffffff;
+}
+.busca-padrao{
+    font-family: 'Montserrat';
+    padding-block: 5px;
+    padding-left: 5px;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 12pt;
+    font-weight: bold;
+    border-bottom: 4px solid gray;
+    background-color: #d6e4f0;
+}
+
+/* Botões */
+.btn-padrao{
+    background-color: #36B6FF;
+    border: 1px solid #051753;
+    color: white;
+    padding-block: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-padrao:hover, .btn-padrao_redondo:hover{
+    background-color: #0f2775;
+    border: 1px solid #007bff;
+}
+.btn-padrao:disabled, .btn-padrao_redondo:disabled{
+    color: #cbd5e3;
+    background-color: #1d78ad;
+    cursor: not-allowed;
+}
+.btn-padrao_redondo{
+    background-color: #36B6FF;
+    border: 1px solid #051753;
+    color: white;
+    padding-block: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-navegacao{
+    color: white;
+}
+.btn-navegacao:disabled{
+    color: rgb(141, 141, 141);
+}
+.btn-voltar, .btn-navegacao{
+    background-color: #051753;
+    color: white;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding-inline: 5px ;
+}
+.btn-editar{
+    color: yellow;
+    border: 1px solid yellow;
+    background-color: #051753;
+}
+.btn-salvar{
+    color: #00ca00;
+    border: 1px solid #00ca00;
+    background-color: #051753;
+}
+.btn-cancelar{
+    color: red;
+    border: 1px solid red;
+    background-color: #051753;
+}
+.btn-voltar:hover, .btn-editar:hover, .btn-salvar:hover, .btn-cancelar:hover, .btn-navegacao:hover{
+    background-color: #0b2783;
+}
+.btn-visualizar{
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.btn-visualizar:hover{
+    background-color: rgb(255, 217, 0);
+}
+.btn-excluir{
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Formulários */
+.form-padrao{
+    width: 98%;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.dados-none{
+    color: red;
+}
+.input-desativado, .select-desativado{
+    font-size: 12pt;
+    font-weight: bold;
+    color: black;
+    background-color: #ffffff;
+}
+
+.checkbox-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.checkbox-padrao input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #2282ff; /* azul opaco */
+    border: 1px solid #007bff;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    position: relative;
+}
+.checkbox-padrao input[type="checkbox"]:checked::after{
+    content: '✔';
+    color: white;
+    position: absolute;
+    font-size: 12px;
+    top: -2px;
+    left: 2px;
+}
+.checkbox-item input[type="checkbox"][disabled] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #007bff4d;
+    border: 1px solid #007bff;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    position: relative;
+}
+.checkbox-item input[type="checkbox"][disabled]:checked::after {
+    content: '✔';
+    color: #051753;
+    position: absolute;
+    font-size: 18px;
+    top: -6px;
+    left:0px;
+}
+
+/* Tabelas */
+.cln-text_padrao{
+    text-align: center;
+}
+.cln-nome_padrao{
+    text-align: left;
+    padding-left: 5px;
+}
+.cln-elementos_padrao{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+    gap: 8px;
+}
+
+/* Paginação */
+#span-paginacao{
+    width: 100%;
+    font-weight: bold;
+    font-size: 10pt;
+}
+.controle-page{
+    border-inline: 2px solid #36B6FF;
+    padding-inline: 5px;
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 10pt;
+}
+#pag-controle_primeira{
+    text-decoration: none;
+    color: yellow;
+}
+#pag-controle_anterior{
+    text-decoration: none;
+    color: #36B6FF;
+    font-weight: bold;
+}
+#pag-atual{
+    color: white;
+}
+#pag-controle_prox{
+    color: #363636;
+}
+#pag-controle_prox{
+    color: #36B6FF;
+}
+#pag-controle_ultima{
+    color: red;    
+}
+
+/* Mensagens de Notificação ================ */
+.message {
+  position: fixed;
+  z-index: 1000;
+  right: 0px;
+  top: 90px;
+  padding-block: 10px;
+  padding-left: 5px;
+  padding-right: 20px;
+  border-bottom: 2px solid white;
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity 1s ease;
+  box-shadow: 0px 12px 20px black;
+}
+
+.message.success {
+    color: white;
+    background-color: #00c90a;
+}
+
+.message.error {
+    color: white;
+    background-color: #db071c;
+
+}

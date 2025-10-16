@@ -1,0 +1,66 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_consultar_estoque.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Consultar Estoque</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id="main-consulta_estoque">
+    <div id="area-busca_tb_consulta_estoque">
+        <form method="get" id="form-pesquisa_tb_consulta_estoque">
+            <input id="input-busca_tb_consulta_estoque" type="search" name="busca" value="{{ busca }}" placeholder="Digite o código ou nome do material...">
+            <button id="btn-pesquisar_tb_consulta_estoque" class="btn-padrao" disabled>
+                <img src="{% static 'images/lupa.png' %}" alt="Editar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Buscar
+            </button>
+        </form>
+        <div id="area-info_tb_consulta_estoque">
+            <span id="quant_resultados">Registros encontrados: {{ total_itens }} </span> 
+        </div>
+    </div>
+    <hr id="linha-divi_consulta_estoque">
+    <div id="area-result_consulta_estoque">
+        <table>
+            <thead>
+                <tr>
+                    <th id="cab-cod_consulta_estoque">Código</th>
+                    <th id="cab-material_consulta_estoque">Material</th>
+                    <th id="cab-lote_consulta_estoque">Lote</th>
+                    <th id="cab-quant_consulta_estoque">Quant.</th>
+                    <th>Min.</th>
+                    <th>Max.</th>
+                    <th id="cab-valid_consulta_estoque">Validade</th>
+                </tr>
+            </thead>
+                {% for estoque in estoque %}
+                <tr>
+                    <td id="cln-cod_consulta_estoque">{{ estoque.material.id }}</td>
+                    <td id="cln-material_consulta_estoque">{{ estoque.material.nome }}</td>
+                    <td id="cln-lote_consulta_estoque">{{ estoque.lote|default:"-" }}</td>
+                    <td id="cln-quant_consulta_estoque">{{ estoque.quantidade_atual }}</td>
+                    <td class="cln-text_padrao">{{ estoque.material.estoque_minimo }}</td>
+                    <td class="cln-text_padrao">{{ estoque.material.estoque_maximo }}</td>
+                    <td id="cln-valid_consulta_estoque">{{ estoque.validade|date:"d/m/Y"|default:"-" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Digite o código ou nome do material na barra de pesquisa</td>
+                </tr>
+                {% endfor %}
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock %}
+        
+{% block js %}
+    <script src="{% static 'js/ControlesConsultaEstoque.js' %}"></script>
+{% endblock %}

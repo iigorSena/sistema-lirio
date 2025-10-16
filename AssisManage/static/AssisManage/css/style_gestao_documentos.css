@@ -1,0 +1,17 @@
+#main-gestao-doc{
+    width: 90%;
+}
+
+table{
+    width: 100%;
+}
+.cln-lote_gerar_pdf{
+    text-align: center;
+}
+#cln-acao_lote_gerar_pdf{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+}

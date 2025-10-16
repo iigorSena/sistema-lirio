@@ -1,0 +1,113 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_cadAssistido.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+    <h2 class="title-pag">Cadastrar Assistido</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+    <form method="post" id="form-cadassis">
+        {% csrf_token %}
+        <span id="area-campos-form-cadassis">
+
+            <div class="campos-form-cadassis">
+                <label for="id_name">Nome Completo:</label>
+                <input type="text" id="input-nome" class="input-form input-padrao" name="name" value="{{ form.instance.name | default:'' }}" maxlength="70" Required>
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="input-cpf" class="input-form input-padrao" name="cpf" value="{{ form.instance.cpf | default:'' }}" maxlength="14">
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="input-tel" class="input-form input-padrao" name="telefone" value="{{ form.instance.telefone | default:'' }}" maxlength="15">
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="telefone2">Seg. Telefone:</label>
+                <input type="text" id="input-tel2" class="input-form input-padrao" name="seg_telefone" value="{{ form.instance.seg_telefone | default:'' }}" maxlength="15">
+            </div>
+
+            <div class="campos-form-cadassis" id="campo-datanasci_form_cadassis">
+                <label for="data_nasci">Data de Nasc.:</label>
+                <input type="date" name="data_nasci" value={{ form.instance.data_nasci | date:'Y-m-d' }} Required>
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="nome_mae">Nome da Mãe:</label>
+                {{ form.nome_mae }}
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="cep">Cep:</label>
+                <input type="text" id="cep" class="input-form" name="cep" value="{{ form.instance.cep | default:'' }}" maxlength="10">
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="cidade">Cidade:</label>
+                {{ form.cidade }}
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="bairro">Bairro:</label>
+                {{ form.bairro }}
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="logradouro">Logradouro:</label>
+                {{ form.logradouro }}
+            </div>
+            
+            <div class="campos-form-cadassis" id="camp-num-form-cadassis">
+                <label for="numero">N° Residência:</label>
+                <input type="number" id="input-numero" class="input-form input-padrao" name="numero" value="{{ form.instance.numero |default:''}}">
+            </div>
+
+            <div class="campos-form-cadassis">
+                <label for="id_vinculo">Vínculo:</label>
+                <select id="id_vinculo" name="vinculo" class="input-form select-padrao" required>
+                    {% for opcao in form.fields.vinculo.queryset %}
+                        <option value="{{ opcao.pk }}"
+                            {% if form.instance.vinculo and form.instance.vinculo.pk == opcao.pk %}
+                                selected
+                            {% endif %}>
+                            {{ opcao }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="area-tip_assis-form-cadassis">
+                <label class="label-form">Tipo de Assistência:</label>
+                <div class="checkbox-padrao">
+                    {% for checkbox in form.tip_assistencia %}
+                    <div class="checkbox-item">
+                        {{ checkbox.tag }}
+                        <label for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div id="area-obs_form_cadassis">
+                <label for="input-observacao">Observações:</label>
+                <textarea id="input-observacao" class="input-form" name="observacao" maxlength="200">{{ form.instance.observacao|default_if_none:'' }}</textarea>
+            </div>
+
+        </span>
+        <button type="submit" class="btn-cad_edit" id="btn-cadassis">Cadastrar</button>
+    </form>
+{% endblock %}
+        
+{% block js %}
+    <script src="{% static 'js/ControlesCadAssis.js' %}"></script>
+    <script> const urlCadastrarAssistido = "{% url 'cadastrar-assistido' %}";</script>
+{% endblock %}
+

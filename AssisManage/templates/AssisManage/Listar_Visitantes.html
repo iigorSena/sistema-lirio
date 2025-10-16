@@ -1,0 +1,116 @@
+{% load static %}
+
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_listar_assistidos.css' %}">
+{% endblock %}
+
+
+{% block title %}
+<title>Visitantes | CEJA</title>
+{% endblock %}
+
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Lista de Visitantes</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main'>
+    <div id="area-busca-tb-assis">
+        <form method="get" id="form-input-pesquisa-tb-assis">
+            <input type="search" class="busca-padrao" id="input-busca_listar_visitante" name="busca" value="{{ busca }}" placeholder="Buscar">
+            <select name="criterio" class="select-padrao" id="select-criterio_listar_visitantes">
+                <option value="tudo" {% if criterio == "tudo" or not criterio %}selected{% endif %}>Tudo</option>
+                <option value="id" {% if criterio == "id" %}selected{% endif %}>ID</option>
+                <option value="name" {% if criterio == "name" %}selected{% endif %}>Nome</option>
+                <option value="cpf" {% if criterio == "cpf" %}selected{% endif %}>CPF</option>
+            </select>
+            <button id="btn-pesquisar-tb-assis" class="btn-padrao" type="submit">
+                <img src="{% static 'images/lupa.png' %}" alt="Editar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Buscar
+            </button>
+            <div id="area-info_tb_assis">
+                <span class="span-info" id="txt-Quant_resultados">Registros: {{ total_registros }} </span>
+
+                <div id="area-filtro_data_listar_visitante" class="area-filtro_lista_visitantes span-info">
+                    <input type="radio" id="filtro_data_listar_visitante" name="filtro" value="data"
+                        {% if filtro == "data" or not filtro %}checked{% endif %}>
+                    <label for="filtro-todos_tb_assis_visitantes">Filtrar por data</label>
+                </div>
+
+                <div id="area-filtro_az_listar_visitantes" class="area-filtro_lista_visitantes span-info">
+                    <input type="radio" id="filtro_az_listar_visitantes" name="filtro" value="az"
+                        {% if filtro == "az" %}checked{% endif %}>
+                    <label for="filtro-nome_tb_assis_visitantes"> A - Z</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="area-tb-assis">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Primeiro nome</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for assistido in assistido %}
+                <tr>
+                    <td id="cln-id-tb-assis">{{ assistido.id }}</td>
+                    <td id="cln-nome-tb-assis">{{ assistido.name }}</td>
+                    <td id="cln-cpf-tb-assis">
+                        {{ assistido.cpf|slice:":3" }}.{{ assistido.cpf|slice:"3:6" }}.{{ assistido.cpf|slice:"6:9" }}-{{ assistido.cpf|slice:"9:11" }}
+                    </td>
+
+                    <td id="cln-data-nasc-tb-assis">{{ assistido.data_nasci|date:"d/m/Y" }}</td>
+
+                    <td id="cln-acao-tb-assis">
+                        <button id="btn-edit-assis" class="btn-acao-tb-assis" data-id="{{ assistido.id }}">
+                            <img src="{% static 'images/olho.png' %}" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                            Visualizar
+                        </button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum cadastro encontrado:(</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="area-paginacao">
+        <span class="span-paginacao">
+            {% if assistido.has_previous %}
+            <a href="{% url 'lista-visitantes' %}?page=1{% if busca %}&busca={{ busca }}{% endif %}{% if filtro %}&filtro={{ filtro }}{% endif %}" id="pag-controle_primeira" class="controle-page">Primeira</a>
+            <a href="{% url 'lista-visitantes' %}?page={{ assistido.previous_page_number }}{% if busca %}&busca={{ busca }}{% endif %}{% if filtro %}&filtro={{ filtro }}{% endif %}" id="pag-controle_anterior" class="controle-page">Anterior</a>
+            {% endif %}
+
+            <span id="pag-atual" class="controle-page">
+                Página {{ assistido.number }} de {{ assistido.paginator.num_pages }}
+            </span>
+
+            {% if assistido.has_next %}
+            <a href="{% url 'lista-visitantes' %}?page={{ assistido.next_page_number }}{% if busca %}&busca={{ busca }}{% endif %}{% if filtro %}&filtro={{ filtro }}{% endif %}" id="pag-controle_prox" class="controle-page">Próxima</a>
+            <a href="{% url 'lista-visitantes' %}?page={{ assistido.paginator.num_pages }}{% if busca %}&busca={{ busca }}{% endif %}{% if filtro %}&filtro={{ filtro }}{% endif %}" id="pag-controle_ultima" class="controle-page">Última</a>
+            {% endif %}
+        </span>
+        </div>
+            {% if assistido.has_next %}
+            {% endif %}
+        </span>
+    </div>
+</main>
+{% block js %}
+    <script src="{% static 'js/ControlesListaAssis.js' %}"></script>
+    <script> const urlListaAssistidos = "{% url 'lista-visitantes' %}"; </script>
+{% endblock %}
+
+{% endblock %}

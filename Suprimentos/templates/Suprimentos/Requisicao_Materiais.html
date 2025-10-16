@@ -1,0 +1,74 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_req_materiais.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Requisições de Materiais</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-req_materiais'>
+    <div id="area-busca_minhas_rms">
+        <form method="get" id="form-requsicao_materiais">
+            <input id="input-nrm_pesquisa" type="number" placeholder="N° da RM" min="1">
+
+            <button id="btn-nrm_pesquisa" class="btn-padrao"disabled>
+                <img src="{% static 'images/lupa.png' %}" alt="Adicionar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Pesquisar
+            </button>
+        </form>
+        <div id="area-btn_nova_rm">
+            <button type="button" class="btn_nova_rm btn-padrao" id="btn_nova_rm" data-url="{% url 'solicitar_materiais' %}">
+                <img src="{% static 'images/mais.png' %}">
+                Cadastrar novo
+            </button>
+            <button type="button" class="btn_nova_rm btn-padrao" id="btn_nova_rm_mobile" data-url="{% url 'solicitar_materiais' %}">
+                <img src="{% static 'images/mais.png' %}">
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabela minhas RMs -->
+    <div id="area-tb_minhas_rms">
+        <table>
+            <thead>
+                <tr>
+                    <th id="cab-nrm_minhas_rms">N° RM</th>
+                    <th id="cab-datasol_minhas_rms">Data da solicitação</th>
+                    <th id="cab-status_minhas_rms">Status</th>
+                    <th id="cab-acao_minhas_rms">Ação</th>
+                </tr>
+            </thead>
+                {% for RM in RM %}
+                <tr>
+                    <td class="cln-tb_minhas_rms">{{ RM.Nrm.rm }}</td>
+                    <td class="cln-tb_minhas_rms">{{ RM.Nrm.data_solic|date:"d/m/Y - H:i" }}</td>
+                    <td class="cln-tb_minhas_rms">{{ RM.status }}</td>
+                    <td class="cln-tb_minhas_rms" id="cln-acao_tb_minhas_rms" disabled>
+                        <button id="btn-edit-item" class="btn-acao_tb_itens btn-visualizar" data-id="{{ itens.id }}">
+                            <img src="{% static 'images/olho.png' %}" style="width: 16px; height: 16px;">
+                            Visualizar
+                        </button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum ítem cadastrado ainda:(</td>
+                </tr>
+                {% endfor %}
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+
+</main>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/ControlesReqMateriais.js' %}"></script>
+{% endblock %}

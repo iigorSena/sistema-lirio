@@ -1,0 +1,92 @@
+#form-cadassis{
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#area-campos-form-cadassis{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-block: 10px;
+}
+.campos-form-cadassis{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#area-tip_assis-form-cadassis{
+    margin-top: 10px;
+    width: 81%;
+    margin-right: 7px;
+}
+.checkbox-padrao{
+    width: 100%;
+    background-color: #D6e4f0;
+    border-bottom: 5px solid #808080;
+    padding-block: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; 
+}
+.checkbox-padrao:hover{
+    border-bottom: 5px solid #36b6ff;
+}
+.checkbox-padrao label{
+    color: #0f2775;
+}
+
+#area-obs_form_cadassis{
+    width:81%;
+    margin-right: 12px;
+    margin-top: 10px;
+}
+#input-observacao{
+    resize: none;
+    width: 100%;
+    height: 10vh;
+    font-size: 13pt;
+}
+
+
+#btn-cadassis{
+    width: 25%;
+    padding-block: 5px;
+    margin-block: 20px;
+    background-color: #36b6ff;
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#btn-cadassis:hover{
+    background-color: #0f2775;
+    border: 1px solid white;
+}
+
+@media (max-width: 900px) {
+
+    #area-campos-form-cadassis{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        margin-block: 10px;
+    }
+    #campo-datanasci_form_cadassis{
+        width: 40%;
+    }
+    #camp-tip_assistencia-form-cadassis{
+        width: 82%;
+    }
+    #btn-cadassis{
+        width: 40%;
+    }
+}

@@ -1,0 +1,112 @@
+{% extends "Sistema/modelo.html" %}
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Sistema/css/style_homepage.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    <title>Lirio</title>
+{% endblock %}
+
+{% block  area-exibicao %}
+<h3>Bem vindo {{ request.user.first_name }}! </h3>
+<div id="area-atalhos_home">
+    {% if perms.Sistema.cadastrar_assistido %}
+    <button type="button" class="btn-nav_menu btn-atalho_home"
+    data-url="{% url 'cadastrar-assistido' %}">
+        <img src="{% static '/images/cadastro_branco.png' %}">
+        Cadastrar Assistido</button>{% endif %}
+
+    {% if perms.Sistema.visualizar_visitantes %}
+    <button type="button" id="btn-menu_visitantes" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'lista-visitantes' %}">
+        <img src="{% static '/images/visitante.png' %}">
+        Visitantes</button>{% endif %}
+
+    {% if perms.Sistema.visualizar_obreiros_mediuns %}
+    <button type="button" id="btn-menu_obreiros_mediuns" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'cadastrar-assistido' %}">
+        <img src="{% static '/images/obreiros_mediuns.png' %}">
+        Obreiros/ Médiuns</button>{% endif %}
+    
+    {% if perms.Sistema.entregar_cesta_basica %}
+    <button type="button" id="btn-menu_entregar_cestas" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'entrega-cesta' %}">
+        <img src="{% static '/images/cesta.png' %}">
+        Entregar Cestas</button>{% endif %}
+
+    {% if perms.Sistema.gerar_senhas_lote %}
+    <button type="button" id="btn-menu_gerador_senhas" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'gerador-senhas' %}">
+        <img src="{% static '/images/senhas.png' %}">
+        Gerador de Senhas</button>{% endif %}
+
+    {% if perms.Sistema.visualizar_gestao_doc %}
+    <button type="button" id="btn-menu_gerador_senhas" class="btn-nav_menu btn-atalho_home"
+    data-url="{% url 'gestao-doc' %}">
+        <img src="{% static '/images/documentos.png' %}">
+        Gestão de Documentos</button>{% endif %}
+
+    {% if perms.Sistema.consultar_estoque %}
+    <button type="button" id="btn-submenu_gerenciar_itens" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'requisicao_materiais' %}">
+        <img src="{% static '/images/solicitar_suprimentos.png' %}">
+        Requisitar Materiais</button>{% endif %}
+
+    {% if perms.Sistema.consultar_estoque %}
+    <button type="button" id="btn-submenu_gerenciar_itens" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'consultar_estoque' %}">
+        <img src="{% static '/images/consultar_estoque.png' %}">
+        Consultar Estoque</button>{% endif %}
+
+    {% if perms.Sistema.registrar_entrada %}
+    <button type="button" id="btn-submenu_nova_entrada" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'nova-entrada-supri' %}">
+        <img src="{% static '/images/carrinho-de-mao.png' %}">
+        Nova Entrada</button>{% endif %}
+
+    {% if perms.Sistema.registrar_saida %}
+    <button type="button" id="btn-submenu_nova_entrada" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'autorizar-solicitacao-rm' %}">
+        <img src="{% static '/images/autorizar-sol.png' %}">
+        Autorizar Solicitações</button>{% endif %}
+
+    {% if perms.Sistema.listar_itens_almoxarifado %}
+    <button type="button" id="btn-submenu_gerenciar_itens" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'listar-itens' %}">
+        <img src="{% static '/images/lista-itens.png' %}">
+        Listar Ítens</button>{% endif %}
+
+    {% if perms.Sistema.ver_historico_movimentacao %}
+    <button type="button" id="btn-submenu_mov_estq" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'listar-itens' %}">
+        <img src="{% static '/images/historico.png' %}">
+        Histórico de Movimentação</button>{% endif %}
+
+    {% if perms.Sistema.ver_relatorios_indicadores %}
+    <button type="button" id="btn-submenu_mov_estq" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'listar-itens' %}">
+        <img src="{% static '/images/relatorio.png' %}">
+        Relatórios & Indicadores</button>{% endif %}
+
+    {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+    <button type="button" id="btn-submenu_cad_categorias" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'cad_categorias_itens' %}">
+        <img src="{% static '/images/categoria.png' %}">
+        Categorias</button>{% endif %}
+
+    {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+    <button type="button" id="btn-submenu_cad_fornecedores" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'cad_marcas_itens' %}">
+        <img src="{% static '/images/marca.png' %}">
+        Marcas </button>{% endif %}
+
+    {% if perms.Sistema.ver_cadastros_gerencia_estoque %}
+    <button type="button" id="btn-submenu_cad_fornecedores" class="btn-atalho_home btn-nav_menu"
+    data-url="{% url 'cad_fornecedor_itens' %}">
+        <img src="{% static '/images/fornecedores.png' %}">
+        Fornecedores</button>{% endif %}
+</div>
+{%endblock  %}

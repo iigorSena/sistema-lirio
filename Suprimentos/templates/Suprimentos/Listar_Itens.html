@@ -1,0 +1,102 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_lista_itens.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Listar Ítens</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-geren_supri'>
+
+    <div id="area-busca_tb_geren_supri">
+        <form method="get" id="form-pesquisa_tb_geren_supri">
+            <input id="input-busca_tb_geren_supri" type="search" name="busca" value="{{ busca }}" placeholder="Papel sulfite">
+            <button id="btn-pesquisar_tb_geren_supri" class="btn-padrao">
+                <img src="{% static 'images/lupa.png' %}" alt="Editar" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+                Buscar
+            </button>
+            <div id="area-info_tb_geren_supri">
+                <span id="quant_resultados">Total de Ítens: {{ total_itens }} </span> 
+            </div>
+        </form>
+        <div id="area-btn_cad_item">
+            <button type="button" class="btn-cad_item btn-padrao" id="btn-cad_item" data-url="{% url 'cadastrar-item' %}">
+                <img src="{% static 'images/mais.png' %}">
+                Cadastrar novo
+            </button>
+            <button type="button" class="btn-cad_item btn-padrao" id="btn-cad_item_mobi" data-url="{% url 'cadastrar-item' %}">
+                <img src="{% static 'images/mais.png' %}"></button>
+        </div>
+    </div>
+
+    <!-- Tabela de ítens -->
+    <div id="area-tb_geren_supri">
+        <table>
+            <thead>
+                <tr>
+                    <th id="cab-id_tb_itens">ID</th>
+                    <th id="cab-nome_tb_itens">Nome</th>
+                    <th id="cab-descricao_tb_itens">Descrição</th>
+                    <th id="cab-status_tb_itens">Status</th>
+                    <th id="cab-acao_tb_itens">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for itens in itens %}
+                <tr>
+                    <td id="cln-id-tb-itens">{{ itens.id }}</td>
+                    <td id="cln-nome-tb-itens">{{ itens.nome }}</td>
+                    <td id="cln-descricao-tb-itens">{{ itens.descricao }}</td>
+                    <td id="cln-status-tb-itens">{{ itens.status }}</td>
+                    <td id="cln-acao-tb-itens">
+                        <button id="btn-edit-item" class="btn-acao_tb_itens btn-visualizar" data-id="{{ itens.id }}">
+                            <img src="{% static 'images/olho.png' %}" style="width: 16px; height: 16px;">
+                            Visualizar
+                        </button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum ítem cadastrado ainda:(</td>
+                </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table>
+    </div>
+
+        <div id="area-paginacao_itens">
+            <span class="span-paginacao">
+                {% if itens.has_previous %}
+                <a href="{% url 'listar-itens' %}?page=1{% if busca %}&busca={{ busca }}{% endif %}" id="pag-controle_primeira" class="controle-page">Primeira</a>
+                <a href="{% url 'listar-itens' %}?page={{ itens.previous_page_number }}{% if busca %}&busca={{ busca }}{% endif %}" id="pag-controle_anterior" class="controle-page">Anterior</a>
+                {% endif %}
+
+                <span id="pag-atual" class="controle-page">
+                    Página {{ itens.number }} de {{ itens.paginator.num_pages }}
+                </span>
+
+                {% if itens.has_next %}
+                <a href="{% url 'listar-itens' %}?page={{ itens.next_page_number }}{% if busca %}&busca={{ busca }}{% endif %}" id="pag-controle_prox" class="controle-page">Próxima</a>
+                <a href="{% url 'listar-itens' %}?page={{ itens.paginator.num_pages }}{% if busca %}&busca={{ busca }}{% endif %}" id="pag-controle_ultima" class="controle-page">Última</a>
+                {% endif %}
+            </span>
+            </div>
+                {% if itens.has_next %}
+                {% endif %}
+            </span>
+        </div>
+
+</main>
+
+{% endblock %}
+        
+{% block js %}
+    <script src="{% static 'js/ControlesListaItens.js' %}"></script>
+    <script> const urlGerenItens = "{% url 'listar-itens' %}";</script>
+{% endblock %}

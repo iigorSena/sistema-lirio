@@ -1,0 +1,160 @@
+#form-gerar_senhas{
+    width: 90%;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap: 10px;
+}
+#area-filtro_gs, #area-geracao_senhas_gs{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:baseline;
+    gap: 10px;
+}
+#area-geracao_senhas_gs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:baseline;
+    gap: 10px;
+    height: 0px;
+    overflow: hidden;
+}
+.gs-area_campos{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+#divisa-filtro_gs{
+    width: 90%;
+}
+#gs-area_camposmsg{
+    width: 30%;
+}
+#input-mensagem{
+    resize: none;
+    max-height: 4vh;
+    width: 100%;
+}
+#gs-area_intervalo{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+#area-inputs_intervalo_gs{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+.input-intervalo_gs{
+    width: 42%;
+    text-align: center;
+}
+
+#area-btn_acao_gerador_lote{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.btn-acao_gerador_lote{
+    width: 8vw;
+    color: white;
+}
+#btn-verificar{
+    background-color: #36B6FF;
+}
+#btn-gerar{
+    background-color: rgb(0, 182, 0);
+}
+#btn-limpar{
+    background-color: red;
+}
+
+/* Área do Editor de Lote */
+#area-editor_lote{
+    width: 90%;
+}
+#area-conteudo_editor_lote{
+    width: 100%;
+    height: 0px;
+    background-color: #c5c5c5;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+#barra-editor_lote{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #051753;
+    font-weight: bold;
+    font-size: 12pt;
+    background-color: #ffffff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-block: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#area-conteudo_editor_lote{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#quant-senhas{
+    width: 100%;
+    text-align: left;
+    color: #051753;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-block: 10px;
+    padding-left: 5%;
+}
+#senhas-edicao_lote{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#tb-assis_lote{
+    width: 90%;
+    box-shadow: none;
+    margin-inline: 5%;
+}
+#corpo-tb_assis_lote{
+    background-color: #0c298a;
+}
+.cln-tb_assis_lote_view{
+    text-align: center;
+}
+.btn-remover_assis{
+    background-color: red;
+    color: white;
+}
+
+
+/* Tabela Lista de Lotes */
+#tb-lista_senhas_lote{
+    width: 90%;
+}
+.cln-tb_senhas_lote_view{
+    text-align: center;
+}
+#cln-acao_tb_senhas_lote_view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+}

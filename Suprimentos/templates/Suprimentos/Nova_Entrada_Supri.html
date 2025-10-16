@@ -1,0 +1,87 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_nova_entrada.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Nova Entrada</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id='main-nova_entrada_supri'>
+    <form method="post" id="form-nova_entrada_supri">
+        {% csrf_token %}
+        <span id="area-campos_nova_entrada_supri">
+            <div class="campos-form_nova_entrada_supri" id="campo-material_form_nova_entrada_supri">
+                <label>Material</label>
+                {{ NovaEntrad.material }}
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-marca_form_nova_entrada_supri">
+                <label>Marca</label>
+                {{ NovaEntrad.marca }}
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-fornecedor_form_nova_entrada_supri">
+                <label>Fornecedor</label>
+                {{ NovaEntrad.fornecedor }}
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-tipoentrada_form_nova_entrada_supri">
+                <label>Tipo de Entrada</label>
+                <select id="id_tip_entrada" name="tip_entrada" class="input-padrao">
+                    {% for valor, texto in NovaEntrad.fields.tip_entrada.choices %}
+                        <option value="{{ valor }}" {% if NovaEntrad.instance.tip_entrada == valor %}selected{% endif %}>{{ texto }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-quant_form_nova_entrada_supri">
+                <label>Quant.</label>
+                <input type="number" name="quantidade" class="input-padrao" id="input-quant_form_nova_entrada_supri" value="{{ NovaEntrad.instance.quantidade | default:'' }}" Required>
+            </div>
+           
+            <div class="campos-form_nova_entrada_supri" id="campo-valorund_form_nova_entrada_supri">
+                <label>Valor Und</label>
+                <input type="text" name="valor_und" class="input-padrao" id="input-valorund_form_nova_entrada_supri" value="{{ NovaEntrad.instance.valor_und | default:'R$ 0,00' }}">
+            </div>
+           
+            <div class="campos-form_nova_entrada_supri" id="campo-valortotal_form_nova_entrada_supri">
+                <label>Valor Total</label>
+                <input type="text" name="valor_total" id="input-valortotal_form_nova_entrada_supri" value="{{ NovaEntrad.instance.valor_total | default:'R$ 0,00' }}" readonly>
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-numnota_form_nova_entrada_supri">
+                <label>N° da Nota</label>
+                <input type="number" name="num_nota" class="input-padrao" value="{{ NovaEntrad.instance.num_nota | default:'' }}" >
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-lote_form_nova_entrada_supri">
+                <label>Lote</label>
+                <input type="text" name="lote" class="input-padrao" value="{{ NovaEntrad.instance.lote | default:'' }}">
+            </div>
+
+            <div class="campos-form_nova_entrada_supri" id="campo-validade_form_nova_entrada_supri">
+                <label>Validade Lote</label>
+                <input type="date" name="validade_lote" value="{{ NovaEntrad.instance.validade_lote | date:'Y-m-d' }}" min="{{ today|date:'Y-m-d' }}">
+            </div>
+
+        </sapn>
+        <hr class="linha-subtitle">
+        <button type="submit" class="btn-padrao" id="btn-cad_nova_entrada">Cadastrar</button>
+    </form>
+</main>
+
+{% endblock %}
+        
+{% block js %}
+<script>
+
+</script>
+<script src="{% static 'js/ControlesNovaEntrada.js' %}"></script>
+<script> const urlNovaEntrada = "{% url 'nova-entrada-supri' %}";</script>
+
+{% endblock %}

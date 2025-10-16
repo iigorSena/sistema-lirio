@@ -1,0 +1,145 @@
+{% extends 'Sistema/modelo.html' %}
+{% load static %}
+
+{% block area-conexao %}
+<link rel="stylesheet" href="{% static 'ATF/css/style_hist_atf.css' %}">
+<link rel="stylesheet" href="{% static 'ATF/css/style_hist_atf_800.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Histórico ATF | Lírio</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+
+    <h2 class="title-pag">Histórico ATF</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+<div id="area-tb-Hist_Atend_Atf">
+    <div id="area-opcoes_tb_Hist_Atend_Atf">
+        <button type="button" id="btn-pop_cad_hist_atend_atf">
+            <img src="{% static 'images/mais.png' %}" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+            Cadastrar Novo</button>
+    </div>
+
+    <form id="form-Hist_Atend_Atf">
+        {% csrf_token %}
+        <table id="tb-Hist_Atend_Atf">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Facilitador</th>
+                    <th>Quant. 1° vez</th>
+                    <th>Quant. Retorno</th>
+                    <th>Data</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for HistATF in historicos_atf %}
+
+                <tr>
+                    <td id="cln-id_tb_Hist_Atend_Atf">{{ HistATF.id }}</td>
+    
+                    <td id="cln-facilitador_tb_Hist_Atend_Atf">
+                        <input type="text" id="facilitador-tb_hist_atf_{{HistATF.id}}" class="input-tb_Hist_Atend_Atf" data-id="{{ HistATF.id }}" value="{{ HistATF.facilitador }}" disabled>
+                    </td>
+    
+                    <td id="cln-1vez_tb_Hist_Atend_Atf">
+                        <input type="text" id="1vez-tb_hist_atf_{{HistATF.id}}" class="input-tb_Hist_Atend_Atf" data-id="{{ HistATF.id }}" value="{{ HistATF.quant_1_vez }}" disabled>
+                    </td>
+    
+                    <td id="cln-retorno_tb_Hist_Atend_Atf">
+                        <input type="text" id="retoro-tb_hist_atf_{{HistATF.id}}" class="input-tb_Hist_Atend_Atf" data-id="{{ HistATF.id }}" value="{{ HistATF.quant_retorno }}" disabled>
+                    </td>
+    
+                    <td id="cln-data_tb_Hist_Atend_Atf">
+                        <input type="text" id="data-tb_hist_atf_{{HistATF.id}}" class="input-tb_Hist_Atend_Atf" data-id="{{ HistATF.id }}" value="{{ HistATF.data|date:'d/m/Y' }}" disabled>
+                    </td>
+    
+                    <td id="cln-acao_tb_Hist_Atend_Atf">
+                        <button type="button" class="btn-action_Hist_Atend_Atf" data-id="{{ HistATF.id }}">
+                            <img src="{% static 'images/lapis-amarelo.png' %}"></button>
+
+    
+                        <button type="button" class="btn-action_Hist_Atend_Atf" data-id="{{ HistATF.id }}" style="display: none;">
+                            <img src="{% static 'images/cancelar.png' %}"></button>
+
+                        <button class="btn-action_Hist_Atend_Atf" data-id="{{ HistATF.id }}" style="display: none;">
+                            <img src="{% static 'images/lixeira.png' %}"></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+    
+    <div id="paginacao">
+        <span id="span-paginacao">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" id="pag-controle_primeira">&laquo; Primeira</a>
+                <a href="?page={{ page_obj.previous_page_number }}" id="pag-controle_anterior">Anterior</a>
+            {% endif %}
+    
+            <span id="pag-atual">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span> 
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" id="pag-controle_prox">Próxima </a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" id="pag-controle_ultima">Última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+    
+    <!-- ====================== Popup de Cadastro de ATF ==================== -->
+
+    <div id ="sombra-popup_cad_atend_atf">
+        <form id="form-Cad_Atend_Atf">
+            {% csrf_token %}
+            <div id="area-btn_close_cd_atend_atf">X</div>
+
+            <h2 class="title-pag">Cadastrar Novo<br>Atendimento Fraterno</h2>
+            <hr id="linha-title_atendimento" class="linha-title">
+            
+            <div id="area-campos_Cad_Atend_Atf">
+                <div id="area-campo_facilitador_cad_atend_atf" class="area-campo_input_Cad_Atend_Atf">
+                    <label for="facilitador" class="label-campo_input_Cad_Atend_At">Facilitador:</label>
+                    <select id="select-Cad_Atend_Atf" name="facilitador">
+                        {% for choice in CadHistAtf.facilitador.field.choices|dictsort:1 %}
+                            <option value="{{ choice.0 }}" {% if choice.0 == CadHistAtf.facilitador.value %}selected{% endif %}>
+                                {{ choice.1 }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div id="area-campo_1_vez_cad_atend_atf" class="area-campo_input_Cad_Atend_Atf">
+                    <label for="quant_1_vez" class="label-campo_input_Cad_Atend_At">Quant. 1ª vez:</label>
+                    <input type="number" class="input_Cad_Atend_Atf" name="quant_1_vez" value="{{ CadHistAtf.quant_1_vez.value|default_if_none:'' }}">
+                </div>
+
+                <div id="area-campo_retorno_cad_atend_atf" class="area-campo_input_Cad_Atend_Atf">
+                    <label for="quant_retorno" class="label-campo_input_Cad_Atend_At">Quant. Retorno:</label>
+                    <input type="number" class="input_Cad_Atend_Atf" name="quant_retorno" value="{{ CadHistAtf.quant_retorno.value|default_if_none:'' }}">
+                </div>
+                    
+                <div id="area-campo_data_cad_atend_atf" class="area-campo_input_Cad_Atend_Atf">
+                    <label for="data" class="label-campo_input_Cad_Atend_At">Data:</label>
+                    <input type="date" class="input_Cad_Atend_Atf" name="data" value="{{ CadHistAtf.data.value|default_if_none:'' }}" style="height: 2.5vh" >
+                </div>
+            </div>
+            <div id="area-btn-cad_atend_atf">
+                <button type="submit" id="btn-cad_atend_atf">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+
+
+{%endblock  %}
+
+{% block js %}
+<script src="{% static 'js/mecanismos_cad_hist_atf.js' %}"></script>
+{% endblock %}

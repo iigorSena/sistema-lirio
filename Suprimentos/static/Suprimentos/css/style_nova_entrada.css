@@ -1,0 +1,141 @@
+#main-nova_entrada_supri{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Tabela */
+#form-nova_entrada_supri{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#area-campos_nova_entrada_supri{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.campos-form_nova_entrada_supri{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+/*Dropdown escolha do material */
+#campo-material_form_nova_entrada_supri{
+    width: 65%;
+    position: relative;
+}
+#campo-marca_form_nova_entrada_supri{
+    width: 30%;
+    position: relative;
+}
+#campo-fornecedor_form_nova_entrada_supri{
+    width: 48%;
+    position: relative;
+}
+.dropdown-nova_entrada{
+    border: none;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    background: white;
+    width: 100%;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+}
+li{
+    padding: 5px;
+    cursor: pointer;
+}
+li:hover{
+    background-color: #c8f9fd;
+}
+
+#campo-tipoentrada_form_nova_entrada_supri{
+    width: 20%;
+}
+#campo-tipoentrada_form_nova_entrada_supri select{
+    font-size: 12pt;
+    padding-block: 5px;
+    background-color: #d6e4f0;
+}
+#campo-quant_form_nova_entrada_supri{
+    width: 10%;
+}
+#campo-valorund_form_nova_entrada_supri{
+    width: 15%;
+}
+#campo-valortotal_form_nova_entrada_supri{
+    width: 23%;
+}
+#campo-numnota_form_nova_entrada_supri{
+    width: 25%;
+}
+#campo-lote_form_nova_entrada_supri{
+    width: 25%;
+}
+#campo-validade_form_nova_entrada_supri{
+    width: 20%;
+}
+.linha-subtitle{
+    width: 80%;
+}
+#btn-cad_nova_entrada{
+    width: 20%;
+}
+
+@media (max-width: 950px){
+#form-nova_entrada_supri{
+    width: 95%;  
+}
+#area-campos_nova_entrada_supri{
+    align-items: flex-end;
+}
+.campos-form_nova_entrada_supri{
+    width: 100%;
+}
+#campo-material_form_nova_entrada_supri{
+    width: 100%;
+}
+#campo-marca_form_nova_entrada_supri{
+    width: 100%;
+}
+#campo-marca_form_nova_entrada_supri, #campo-fornecedor_form_nova_entrada_supri{
+    width: 48.5%;
+}
+#campo-tipoentrada_form_nova_entrada_supri{
+    width: 40%;
+}
+#campo-quant_form_nova_entrada_supri{
+    width: 23%;
+}
+#campo-valorund_form_nova_entrada_supri{
+    width: 30%;
+}
+#campo-valortotal_form_nova_entrada_supri{
+    width: 48.5%;
+}
+#campo-numnota_form_nova_entrada_supri{
+    width: 48.5%;
+}
+#campo-lote_form_nova_entrada_supri, #campo-validade_form_nova_entrada_supri{
+    width: 48.5%;
+}
+.linha-subtitle{
+    width: 98%;
+}
+#btn-cad_nova_entrada{
+    width: 40%;
+}
+}

@@ -1,0 +1,100 @@
+{% extends 'Sistema/modelo.html' %}
+{% load static %}
+
+{% block area-conexao %}
+<link rel="stylesheet" href="{% static 'ATF/css/style_gerenciamento_atf.css' %}">
+<link rel="stylesheet" href="{% static 'ATF/css/style_gerenciamento_atf_800_mxw.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Gerenciamento | Lírio</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+
+<h2 class="title-pag">Gerenciar ATF</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+
+<form id="form-geren_facilitadores">
+    <div id="area-opcoes_tb_geren_facilitador_Atf">
+        <button type="button" id="btn-pop_cad_geren_facilitador_atf">
+            <img src="{% static 'images/mais.png' %}" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;">
+            Cadastrar Novo</button>
+    </div>
+{% csrf_token %}
+    <div id="area-tb_geren_facili">   
+        <table id="tb-geren_facili">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Facilitadores</th>
+                    <th id="cab-status_geren_facili">Status</th>
+                    <th id="cab-acao_geren_facili">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for facilitador_atf in facilitadores_atf %}
+                <tr>
+                    <td id="cln-id_tb_geren_facili" class="cln-id_tb_geren_facili">{{ facilitador_atf.id }}</td>
+                    
+                    <td class="cln-facilitador_tb_geren_facili">
+                        <input type="text" class="input-tb_geren_facili input-desativado" data-id="{{ facilitador_atf.id }}" value="{{ facilitador_atf.facilitador }}" disabled>
+                    </td>
+                    
+                    <td class="cln-facilitador_tb_geren_facili">
+                        <select name="status" id="input-status_tb_geren_facili" class="input-tb_geren_facili input-desativado" data-id="{{ facilitador_atf.id }}" disabled>
+                            <option value="ativo" {% if facilitador_atf.status == "ativo" %}selected{% endif %}>Ativo</option>
+                            <option value="inativo" {% if facilitador_atf.status == "inativo" %}selected{% endif %}>Inativo</option>
+                        </select>
+                    </td>
+                    
+                    <td id="cln-acao_tb_geren_facili" class="cln-facilitador_tb_geren_facili">
+                        <button type="button" class="btn-action_geren_facili" data-id="{{ facilitador_atf.id }}">
+                            <img src="{% static 'images/lapis-amarelo.png' %}"></button>
+                            
+                        <button class="btn-action_geren_facili" data-id="{{ facilitador_atf.id }}" style="display: none;">
+                            <img src="{% static "images/confirmar.png" %}"></button>
+                            
+                        <button class="btn-action_geren_facili" data-id="{{ facilitador_atf.id }}" style="display: none;">
+                            <img src="{% static 'images/lixeira.png' %}"></button>
+                            
+                        <button type="button" class="btn-action_geren_facili" data-id="{{ facilitador_atf.id }}" style="display: none;">
+                            <img src="{% static 'images/cancelar.png' %}"></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+
+    <!-- ====================== Popup de Cadastro de Facilitador ==================== -->
+
+    <div id ="sombra-popup_cad_facilitador_atf">
+        <form id="form-Cad_facilitador_Atf">
+            {% csrf_token %}
+            <div id="area-cabecalho_form">
+                <div id="area-title">
+                    <h2 id="title-pop_cad_facilitador_atf" class="title-pag">Cadastrar Novo<br>Facilitador</h2>
+                    <hr id="linha-title_atendimento" class="linha-title">
+                </div>
+                <div id="area-btn_close_cd_facilitador_atf">X</div>
+            </div>
+            
+            <div id="area-campos_Cad_facilitador_Atf">
+                <div id="area-campo_facilitador_cad_facilitador_atf" class="area-campo_input_Cad_facilitador_Atf">
+                    <label for="facilitador" class="label-campo_input_Cad_facilitador_At">Facilitador:</label>
+                    <input type="text" class="input_Cad_facilitador_Atf" name="facilitador" value="{{ CadFacilitador.facilitador.value|default_if_none:'' }}">
+                </div>
+            </div>
+            <div id="area-btn-cad_facilitador_atf">
+                <button type="submit" id="btn-cad_facilitador_atf">Cadastrar</button>
+            </div>
+        </form>
+
+{%endblock  %}
+
+{% block js %}
+<script src="{% static 'js/mecanismos_gerenciamento.js' %}"></script>
+{% endblock %}

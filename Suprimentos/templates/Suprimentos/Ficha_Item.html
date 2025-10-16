@@ -1,0 +1,113 @@
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'Suprimentos/css/style_ficha_item.css' %}">
+{% endblock %}
+
+{% block area-menu %}
+{% endblock %}
+
+{% block  area-exibicao%}
+<h2 class="title-pag">Ficha Suprimento</h2>
+<hr id="linha-title_atendimento" class="linha-title">
+
+<main id="main">
+    <form id="form-ficha_item_supri" method="post" data-id="{{ FItem.id }}">
+    {% csrf_token %}
+        <div id="fieldset-grupo_item_form">
+            <div class="form-group" id="area-input-nome">
+                <label for="nome" class="label-form">Nome</label>
+                <input type="text" id="nome-item" class="input-ficha_item" name="nome" value="{{ FItem.nome }}" maxlength='70' disabled>
+            </div>
+
+            <div class="form-group" id="area-input-unidade">
+                <label for="und-medida-item" class="label-form">Und. medida</label>
+                <select id="und-medida-item" name="unidade_medida" class="input-ficha_item" disabled>
+                    {% for code, label in FItem.UNIDADE_MEDIDA_CHOICES %}
+                        <option value="{{ code }}" {% if FItem.unidade_medida == code %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group" id="area-input-descricao">
+                <label for="input-text-item" class="label-form">Descrição</label>
+                <textarea id="input-text-item" class="input-ficha_item" name="descricao" maxlength='200' disabled>{{ FItem.descricao }}</textarea>
+            </div>
+            
+            <div class="form-group" id="area-input-categoria">
+                <label for="categoria-vinculo" class="label-form">Categoria</label>
+                <select id="categoria-item" name="categoria" class="input-ficha_item select-desativado" disabled>
+                    {% for categ in Categorias %}
+                        <option value="{{ categ.id }}" {% if FItem.categoria_id == categ.id %}selected{% endif %}>
+                            {{ categ.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group" id="area-input-estmin">
+                <label for="estoque-min-item" class="label-form">Estoque mín.</label>
+                <input type="number" id="estoque-min-item" class="input-ficha_item" name="estoque_minimo" value="{{ FItem.estoque_minimo }}" maxlength='10' disabled>
+            </div>
+
+            <div class="form-group" id="area-input-estmax">
+                <label for="estoque-max-item" class="label-form">Estoque max.</label>
+                <input type="number" id="estoque-max-item" class="input-ficha_item" name="estoque_maximo" value="{{ FItem.estoque_maximo }}" maxlength='10' disabled>
+            </div>
+
+            <div class="form-group" id="area-input-status">
+                <label for="status-item" class="label-form">Status</label>
+                <select id="status-item" name="status" class="input-ficha_item select-desativado" disabled>
+                    {% for code, label in FItem.STATUS_CHOICES %}
+                        <option value="{{ code }}" {% if FItem.status == code %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+        </div>
+        <div id="area-detalhes_ficha_item_form">
+            <label>Ítem cadastrado em: </label>
+            {{ FItem.data_cadastro|date:"d/m/Y" | default:"--/--/----" }}
+            <label>Por: </label>
+            {{ FItem.cadastrador }}
+            <label>|</label>
+            <label>Última alteração por: </label>
+            {{ FItem.ultima_alteracao|default:"Nenhum usuário" }}
+        </div>
+        <div id="area-btns_acao_item_form">
+            <div id="area-btn_voltar">
+                <button type="button" id="btn-voltar_item_form" class="btn-voltar" data-url="{% url 'listar-itens' %}">
+                    <img src="{% static 'images/voltar.png' %}">
+                    Voltar
+                </button>
+            </div>
+                
+            <button type="button" id="btn-editar_item_form" class="btn-editar">
+                <img src="{% static 'images/lapis-amarelo.png' %}">
+                    Editar
+            </button>
+
+            <button type="submit" id="btn-salvar_item_form" class="btn-salvar">
+                <img src="{% static 'images/confirmar.png' %}">
+                    Salvar
+            </button>
+
+            <button type="button" id="btn-cancelar_item_form" class="btn-cancelar">
+                <img src="{% static 'images/cancelar.png' %}">
+                    Cancelar
+            </button>
+        </div>
+    </form>
+
+</main>
+<div id="area-data_url_ficha_item" data-url-editarficha="{% url 'ficha-suprimentos-item' 0 %}"></div>
+
+{% endblock %}
+        
+{% block js %}
+    <script src="{% static 'js/ControlesFichaItem.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+.messages{
+    position: absolute;
+    z-index: 1000;
+    right: 0px;
+    top: 8%;
+}
+.msg-notificacao{
+    width: 20vw;
+    padding-block: 10px;
+    padding-left: 5px;
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: left;
+    box-shadow: 0px 5px 15px black;
+}
+.msg-sucesso{
+    color: white;
+    background-color: green;
+}
+.msg-aviso{
+    color: black;
+    background-color: yellow;
+}
+.msg-cpf-error{
+    color: white;
+    background-color: red;
+}
+.error-tip-assistencia{
+    color: black;
+    background-color: yellow;
+}
+
+.msg-falha{
+    color: white;
+    background-color: rgb(179, 0, 0);
+}
+
+@media (max-width: 950px) {
+    .msg-notificacao{
+        width: 60vw;
+    }
+
+}

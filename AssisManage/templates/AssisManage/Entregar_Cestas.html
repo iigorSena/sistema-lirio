@@ -1,0 +1,84 @@
+{% load custom_filters %}
+{% load static %}
+
+{% block area-conexao %}
+    <link rel="stylesheet" href="{% static 'AssisManage/css/style_entregar_cestas.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Entregar Cestas | CEJA</title>
+{% endblock %}
+
+{% block  area-exibicao%}
+
+<div id="area-form">
+    <h2 class="title-pag">Entrega de Cestas</h2>
+    <hr id="linha-title_atendimento" class="linha-title">
+
+    <form id="form-dados-assis" method="post">
+        {% csrf_token %}
+            
+        <div class="form-group" id="nome-form_view_atend">
+            <label class="label-form">Nome Completo:</label>
+            <input type="text" class="input-form" id="nome" name="nome" disabled>
+        </div>
+        
+        <div class="form-group" id="data-form_view_atend">
+            <label class="label-form">Data de Nasc.:</label>
+            <input type="text" class="input-form" id="data_nasci" name="data_nasci" disabled>
+        </div>
+        
+        <div class="form-group" id="mae-form_view_atend">
+            <label class="label-form">Nome da mãe:</label>
+            <input type="text" class="input-form"  name="nome_mae" disabled>
+        </div>
+    </form>
+
+<!-- Validação de Dados -->
+<form id="form-cad_hist_atend" method="post">
+    {% csrf_token %}
+    <div id="area-validacao-dados">
+         
+        <input type="hidden" name="id_assistido" id="id_assistido">
+
+        <div id="tipassis-form_cad_hist" class="area-input_dados" >
+            <label>Tip. Assistência:</label>
+            {{ FormCadHist.tip_assistencia }}
+        </div>
+        
+        <div id="local-form_cad_hist" class="area-input_dados" >
+            <label>Local:</label>
+            {{ FormCadHist.local }}
+        </div>
+        
+        <div id="data-form_cad_hist" class="area-input_dados" >
+            <label>Data de Entrega:</label>
+            {{ FormCadHist.data }}
+        </div>
+                
+    </div>
+    <hr>
+    <div id="area-validacao-Atendimento" >
+        <div id="area-checagem">
+            <input type="number" id="input-cpf_busca" placeholder="00000000000">
+            
+            <button id="btn-pesquisar-numero">
+                <img src="{% static 'images/lupa.png' %}" id="img-lupa" style="width: 20px">
+                Buscar
+            </button>
+        </div>
+        
+        <button type="submit" id='btn-validar-atendimento' disabled>
+            <img src="{% static 'images/confirmar.png' %}" style="width: 20px">
+            Confirmar Entrega
+        </button>
+    </div>
+</form>
+</div>
+        
+{%endblock  %}
+
+{% block js %}
+    <script src="{% static 'js/ControlesEntregaCestas.js' %}"></script>
+{% endblock %}
+
