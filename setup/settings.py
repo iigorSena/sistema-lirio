@@ -101,10 +101,16 @@ STATICFILES_DIRS = {
 }
 
 
-# Arquivos Staticos
+# Arquivos Estáticos
 STATIC_URL = '/static/'
+
+# Localização das pastas que contêm arquivos estáticos (para desenvolvimento)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# Local onde os arquivos estáticos serão armazenados após o comando collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Pasta para armazenar os arquivos estáticos coletados
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
