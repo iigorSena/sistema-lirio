@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Sistema',
+    'Gestao_de_Pessoas',
     'AssisManage',
     'ATF',
     'Canvas',
